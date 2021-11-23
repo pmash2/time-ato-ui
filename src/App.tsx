@@ -8,16 +8,13 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Welcome to Time-ato!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>Current State:</div>
+        <div>Time Remaining:</div>
+        <div>Work Time: <input></input></div>
+        <div>Break Time: <input></input></div>
+        <button>Start Timer</button>
       </header>
     </div>
   );
