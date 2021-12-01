@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import pomo from 'pomo-timer-lib';
+import { Pomodoro } from './pomodoro';
 
 type MyProps = {};
 type MyState = {
     remaining: string
 };
+type PomodoroState = {
+    currentState: string
+    timeRemaining: string
+}
 
 export class MainLayout extends Component<MyProps, MyState> {
-    timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: 5, Milliseconds: 0});;
+    timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: 0, Milliseconds: 0});
+    pomoState = { currentState: "none", timeRemaining: "1:00" } as PomodoroState;
 
     constructor(props: any) {
         super(props);
@@ -18,6 +24,8 @@ export class MainLayout extends Component<MyProps, MyState> {
 
     startTimer = () => {
         console.log("Button clicked");
+        let pomoTime = document.getElementById("workTime")! as HTMLInputElement;
+        this.timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: parseInt(pomoTime.value), Milliseconds: 0});
         this.timer.start();
         setInterval(this.countDown, 50);
     }
@@ -26,14 +34,14 @@ export class MainLayout extends Component<MyProps, MyState> {
         this.setState({
             remaining: pomo.TimeUtilities.timeToString(this.timer.Remaining)
         })
+        this.pomoState = { ...this.pomoState, timeRemaining: this.state.remaining};
     }
 
     render() {
         return (
             <div>
-                <div>Current State:</div>
-                <div>Time Remaining: {this.state.remaining}</div>
-                <div>Work Time: <input></input></div>
+                <Pomodoro pomodoroState={ this.pomoState } />
+                <div>Work Time: <input id="workTime"></input></div>
                 <div>Break Time: <input></input></div>
                 <button
                  onClick={this.startTimer}>
