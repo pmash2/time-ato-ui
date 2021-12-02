@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import pomo from 'pomo-timer-lib';
 import { Pomodoro } from './pomodoro';
+import { PomodoroInput } from './pomodoro-input'
 
 type MyProps = {};
 type MyState = {
@@ -41,12 +42,7 @@ export class MainLayout extends Component<MyProps, MyState> {
         return (
             <div>
                 <Pomodoro pomodoroState={ this.pomoState } />
-                <div>Work Time: <input id="workTime"></input></div>
-                <div>Break Time: <input></input></div>
-                <button
-                 onClick={this.startTimer}>
-                    Start Timer
-                </button>
+                <PomodoroInput onClick={ this.startTimer } />
             </div>
         );
     }
