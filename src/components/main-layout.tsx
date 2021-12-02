@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import pomo from 'pomo-timer-lib';
+import * as pomo from 'pomo-timer-lib';
 import { Pomodoro } from './pomodoro';
 import { PomodoroInput } from './pomodoro-input'
 
@@ -13,7 +13,7 @@ type PomodoroState = {
 }
 
 export class MainLayout extends Component<MyProps, MyState> {
-    timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: 0, Milliseconds: 0});
+    timer = pomo.getTimer(0, 0, 0, 0);
     pomoState = { currentState: "none", timeRemaining: "1:00" } as PomodoroState;
 
     constructor(props: any) {
@@ -26,14 +26,19 @@ export class MainLayout extends Component<MyProps, MyState> {
     startTimer = (seconds: number) => {
         console.log("Button clicked");
 
-        this.timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: seconds, Milliseconds: 0});
+        this.timer = pomo.getTimer(0, 0, seconds, 0);
+        this.timer.on("TIMER_COMPLETE", () => {
+            console.log("THE TIMER HAS COMPLETED")
+            this.timer.stop()
+        })
+
         this.timer.start();
         setInterval(this.countDown, 50);
     }
 
     countDown = () => {
         this.setState({
-            remaining: pomo.TimeUtilities.timeToString(this.timer.Remaining)
+            remaining: this.timer.Remaining.ToString()
         })
         this.pomoState = { ...this.pomoState, timeRemaining: this.state.remaining};
     }
