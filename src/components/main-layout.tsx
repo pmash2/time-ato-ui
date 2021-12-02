@@ -23,10 +23,10 @@ export class MainLayout extends Component<MyProps, MyState> {
         }
     }
 
-    startTimer = () => {
+    startTimer = (seconds: number) => {
         console.log("Button clicked");
-        let pomoTime = document.getElementById("workTime")! as HTMLInputElement;
-        this.timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: parseInt(pomoTime.value), Milliseconds: 0});
+
+        this.timer = new pomo.Timer({Hours: 0, Minutes: 0, Seconds: seconds, Milliseconds: 0});
         this.timer.start();
         setInterval(this.countDown, 50);
     }
