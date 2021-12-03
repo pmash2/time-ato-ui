@@ -1,52 +1,60 @@
 import React, { Component } from 'react';
-import * as pomo from 'pomo-timer-lib';
+import * as pomo from 'pomo-timer-lib'
 import { Pomodoro } from './pomodoro';
 import { PomodoroInput } from './pomodoro-input'
 
-type MyProps = {};
-type MyState = {
-    remaining: string
-};
 type PomodoroState = {
-    currentState: string
+    phase: string
     timeRemaining: string
 }
+type MyProps = {};
+type MyState = {
+    currentState: PomodoroState
+};
 
 export class MainLayout extends Component<MyProps, MyState> {
-    timer = pomo.getTimer(0, 0, 0, 0);
-    pomoState = { currentState: "none", timeRemaining: "1:00" } as PomodoroState;
+    private myPomo: pomo.Pomodoro
+    private currState: PomodoroState
 
     constructor(props: any) {
         super(props);
-        this.state = {
-            remaining: "0:00"
+        this.myPomo = pomo.getPomodoro(pomo.getTimer(0, 0, 0, 0), pomo.getTimer(0, 0, 0, 0))
+        this.currState = {
+            phase: "TBD",
+            timeRemaining: "0:00"
         }
     }
 
-    startTimer = (seconds: number) => {
+    startTimer = (wrk: pomo.Timer, brk: pomo.Timer) => {
         console.log("Button clicked");
 
-        this.timer = pomo.getTimer(0, 0, seconds, 0);
-        this.timer.on("TIMER_COMPLETE", () => {
-            console.log("THE TIMER HAS COMPLETED")
-            this.timer.stop()
+        this.myPomo = pomo.getPomodoro(wrk, brk)
+
+        this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
+            console.log("POMODORO COMPLETE")
+        })
+        this.myPomo.on(pomo.EmitString.BreakComplete, () => {
+            console.log("BREAK COMPLETE")
         })
 
-        this.timer.start();
+        this.myPomo.start()
         setInterval(this.countDown, 50);
     }
 
     countDown = () => {
         this.setState({
-            remaining: this.timer.Remaining.ToString()
+            currentState: {
+                phase: this.myPomo.CurrentState,
+                timeRemaining: this.myPomo.Remaining.ToString()
+            }
         })
-        this.pomoState = { ...this.pomoState, timeRemaining: this.state.remaining};
+        this.currState = this.state.currentState
     }
 
     render() {
         return (
             <div>
-                <Pomodoro pomodoroState={ this.pomoState } />
+                <Pomodoro pomodoroState={ this.currState } />
                 <PomodoroInput onClick={ this.startTimer } />
             </div>
         );

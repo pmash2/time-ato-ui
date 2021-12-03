@@ -1,5 +1,5 @@
 type PomodoroState = {
-    currentState: string
+    phase: string
     timeRemaining: string
 }
 type myProps = {
@@ -9,7 +9,7 @@ type myProps = {
 const Pomodoro = (pomo: myProps) => {
     return(
         <div>
-            <div>Current State: {pomo.pomodoroState.currentState}</div>
+            <div>Current State: {pomo.pomodoroState.phase}</div>
             <div>Time Remaining: {pomo.pomodoroState.timeRemaining}</div>
         </div>
     )
