@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './style/App.css';
 import { MainLayout } from './components/main-layout';
+import { About } from './components/about';
 
 function App() {
   return (
@@ -11,8 +12,11 @@ function App() {
         <p>
           Welcome to Time-ato!
         </p>
-        <MainLayout />
+        <About />
       </header>
+      <body>
+        <MainLayout />
+      </body>
     </div>
   );
 }
