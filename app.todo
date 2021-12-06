@@ -1,0 +1,29 @@
+New Features:
+    [ ] "Send feedback" option
+        Sends email with feedback/bugs?
+    [ ] Add back "Work Description" field, mini-retro/survey at the end of a session
+        Can then save this data and make it reportable
+        Successful pomodoro? Y/N
+        Productivity? 1-5
+        Mood? 1-5
+        Focus? 1-5
+        This might be a little much for every cycle...
+    [ ] Send timer notifications to user via Windows Notifications System
+    [ ] Optional notifications when warning threshold is hit
+    [ ] About page
+    [ ] Themes/skins
+
+Bugs:
+
+Quality of Life:
+    [ ] Auto-loop upon completion of a pomodoro session
+        Include setting for this to be the default behavior
+
+Settings Page Creation:
+    [ ] Default lengths
+    [ ] Warning threshold %
+
+Teams Integration:
+    [ ] Figure out integration with Teams
+    [ ] Optionally use user input of work description in Teams Status message
+    [ ] Mark user as DND/Busy and Available based on timer status
