@@ -1,11 +1,12 @@
 type Props = {
-    text: string
+    text: string,
+    id: string
 }
 
-const SettingsCheckbox = ({text}: Props) => {
+const SettingsCheckbox = ({text, id}: Props) => {
     return (
         <div>
-            <input type="checkbox"/>
+            <input type="checkbox" id={ id }/>
             <label>{ text }</label>
         </div>
     )

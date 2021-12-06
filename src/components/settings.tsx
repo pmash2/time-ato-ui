@@ -6,11 +6,47 @@ import { SettingsCheckbox } from "./settings-checkbox"
 
 const Settings = () => {
     const [open, setOpen] = useState(false)
-    const closeModal = () => setOpen(false)
+    const closeModal = (): void => setOpen(false)
+    const settingsOptions = {
+        "Inputs": [
+            {
+                "text": "Default Pomodoro Length",
+                "id": "default-pomo-length"
+            },
+            {
+                "text": "Default Break Length",
+                "id": "default-break-length"
+            },
+            {
+                "text": "Warning Threshold (%)",
+                "id": "warn-threshold"
+            },
+        ],
+        "Checkboxes": [
+            {
+                "text": "Auto-loop pomodoros",
+                "id": "auto-loop"
+            }
+        ]
+    }
+
+    const saveSettings = (): void => {
+        settingsOptions.Inputs.map((item) => saveItem(item.id, false))
+        settingsOptions.Checkboxes.map((item) => saveItem(item.id, true))
+
+        alert("Settings saved!")
+    }
+
+    const saveItem = (itemId: string, isCheckable: boolean): void => {
+        let val = document.getElementById(itemId) as HTMLInputElement
+        let valToSave = isCheckable ? val.checked.toString() : val.value
+
+        localStorage.setItem(itemId, valToSave)
+    }
 
     return (
         <div>
-            <button type="button" onClick={() => setOpen(o => !o)}>
+            <button type="button" onClick={ () => setOpen(o => !o) }>
                 Settings
             </button>
             <Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center">
@@ -20,11 +56,18 @@ const Settings = () => {
                     </a>
 
                     <h2>Application Settings</h2>
-                    <SettingsInput text="Default Pomodoro Length" />
-                    <SettingsInput text="Default Break Length" />
-                    <SettingsInput text="Warning Threshold (%)" />
 
-                    <SettingsCheckbox text="Auto-loop pomodoros" />
+                    {settingsOptions.Inputs.map((lbl, i) =>
+                        <SettingsInput {...lbl} key={i} />
+                    )}
+
+                    {settingsOptions.Checkboxes.map((lbl, i) =>
+                        <SettingsCheckbox {...lbl} key={i} />
+                    )}
+
+                    <button onClick={ () => saveSettings() }>
+                        Save
+                    </button>
                 </div>
             </Popup>
         </div>
