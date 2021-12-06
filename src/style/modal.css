@@ -1,3 +1,4 @@
 .modal {
     background-color: cornflowerblue;
+    display: grid;
 }

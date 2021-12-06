@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './style/App.css';
 import { MainLayout } from './components/main-layout';
 import { About } from './components/about';
+import { Settings } from './components/settings';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <header className="App-header">
         <div className="modalMenu">
           <About />
+          <Settings />
         </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
