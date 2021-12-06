@@ -8,11 +8,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <div className="modalMenu">
+          <About />
+        </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Welcome to Time-ato!
         </p>
-        <About />
       </header>
       <body>
         <MainLayout />

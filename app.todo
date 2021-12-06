@@ -10,7 +10,7 @@ New Features:
         This might be a little much for every cycle...
     [ ] Send timer notifications to user via Windows Notifications System
     [ ] Optional notifications when warning threshold is hit
-    [ ] About page
+    [x] About page @done(21-12-06 14:56)
     [ ] Themes/skins
 
 Bugs:
