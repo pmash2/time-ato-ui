@@ -42,6 +42,9 @@ export class MainLayout extends Component<Props, MyState> {
         })
         this.myPomo.on(pomo.EmitString.BreakComplete, () => {
             console.log("BREAK COMPLETE")
+            if (this.settings.Checkboxes[0].checked) {
+                this.myPomo.restart()
+            }
         })
 
         this.myPomo.start()
