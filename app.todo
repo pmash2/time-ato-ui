@@ -21,7 +21,7 @@ Quality of Life:
         Include setting for this to be the default behavior
 
 Settings Page Creation:
-    [ ] Default lengths
+    [x] Default lengths @done(21-12-07 15:05)
     [ ] Warning threshold %
 
 Teams Integration:
