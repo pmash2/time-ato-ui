@@ -4,14 +4,25 @@ import './style/App.css';
 import { MainLayout } from './components/main-layout';
 import { About } from './components/about';
 import { Settings } from './components/settings';
+import { LoadSettings, CurrentSettingsOptions, SaveSettings } from './settings-helpers'
 
 function App() {
+  let mySettings = CurrentSettingsOptions
+  mySettings = LoadSettings(mySettings)
+
+  const updateSettings = (): void => {
+    console.log(mySettings)
+    mySettings = SaveSettings(mySettings)
+    console.log(mySettings)
+    alert("New settings saved!")
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <div className="modalMenu">
           <About />
-          <Settings />
+          <Settings settings={mySettings} onSave={updateSettings} />
         </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>

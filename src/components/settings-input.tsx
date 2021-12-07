@@ -1,13 +1,10 @@
-type Props = {
-    text: string
-    id: string
-}
+import { PomoInputSetting } from '../settings-helpers'
 
-const SettingsInput = ({text, id}: Props) => {
+const SettingsInput = ({text, id, value}: PomoInputSetting) => {
     return (
         <div>
             <label>{ text }</label>
-            <input id={ id }/>
+            <input id={ id } defaultValue={ value }/>
         </div>
     )
 }

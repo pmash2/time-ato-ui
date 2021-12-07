@@ -14,6 +14,7 @@ New Features:
     [ ] Themes/skins
 
 Bugs:
+    [ ] Even though settings are updated, re-entering the settings page does not display the updated values
 
 Quality of Life:
     [ ] Auto-loop upon completion of a pomodoro session
