@@ -2,17 +2,15 @@ type PomodoroState = {
     phase: string
     timeRemaining: string
 }
-type myProps = {
+type Props = {
     pomodoroState: PomodoroState
 };
 
-const Pomodoro = (pomo: myProps) => {
+export const Pomodoro = ({pomodoroState}: Props) => {
     return(
         <div>
-            <div>Current State: {pomo.pomodoroState.phase}</div>
-            <div>Time Remaining: {pomo.pomodoroState.timeRemaining}</div>
+            <div>Current State: {pomodoroState.phase}</div>
+            <div>Time Remaining: {pomodoroState.timeRemaining}</div>
         </div>
     )
 }
-
-export { Pomodoro };
