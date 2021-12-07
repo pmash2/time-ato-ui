@@ -28,7 +28,7 @@ function App() {
         <p>
           Welcome to Time-ato!
         </p>
-        <MainLayout />
+        <MainLayout settings={mySettings} />
       </header>
     </div>
   );

@@ -1,0 +1,7 @@
+#phase, #remaining {
+    display: inline
+}
+
+.warn {
+    color: red
+}
