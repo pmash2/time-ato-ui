@@ -5,3 +5,15 @@
 .warn {
     color: red
 }
+
+.pomodoro {
+    color: white
+}
+
+.break {
+    color: green
+}
+
+.completed {
+    color: yellow
+}

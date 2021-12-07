@@ -15,7 +15,7 @@ export const Pomodoro = ({pomodoroState}: Props) => {
     return(
         <div>
             <div>
-                Current State: <div id="phase">{pomodoroState.phase}</div>
+                Current State: <div id="phase" className={pomodoroState.phase.toLowerCase()}>{pomodoroState.phase}</div>
             </div>
             <div>
                 Time Remaining: <div id="remaining" className={shouldWarn}>{pomodoroState.timeRemaining}</div>
