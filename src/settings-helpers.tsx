@@ -41,7 +41,7 @@ export const CurrentSettingsOptions: PomoSettings = {
     ]
 }
 
-export const LoadSettings = (_settings: PomoSettings): PomoSettings => {
+export const LoadSettings = (_settings: PomoSettings = CurrentSettingsOptions): PomoSettings => {
     let newInputSettings = _settings.Inputs.map((item) => GetInputSetting(item))
     let newCheckboxSettings = _settings.Checkboxes.map((item) => GetCheckboxSetting(item))
 
