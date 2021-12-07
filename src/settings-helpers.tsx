@@ -96,7 +96,7 @@ const GetInputSetting = (_setting: PomoInputSetting): PomoInputSetting => {
 }
 
 const GetCheckboxSetting = (_setting: PomoCheckboxSetting): PomoCheckboxSetting => {
-    let val = !!localStorage.getItem(_setting.id)
+    let val = localStorage.getItem(_setting.id) === "true" ? true : false
 
     return {
         ..._setting,
