@@ -3,6 +3,7 @@ import * as pomo from 'pomo-timer-lib'
 import { Pomodoro } from './pomodoro';
 import { PomodoroInput } from './pomodoro-input'
 import { PomoSettings } from '../settings-helpers';
+import { CreateNotification } from '../notifications'
 
 type PomodoroState = {
     phase: string
@@ -39,9 +40,16 @@ export class MainLayout extends Component<Props, MyState> {
 
         this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
             console.log("POMODORO COMPLETE")
+            let title = "Time-ato" as string
+            let body = "Pomodoro completed!" as string
+            CreateNotification({ title, body })
         })
         this.myPomo.on(pomo.EmitString.BreakComplete, () => {
             console.log(`BREAK COMPLETE - Restart? ${this.settings.Checkboxes[0].checked}`)
+            let title = "Time-ato" as string
+            let body = "Break completed! Get back to work!" as string
+            CreateNotification({ title, body })
+
             if (this.settings.Checkboxes[0].checked) {
                 this.myPomo.restart()
             }
