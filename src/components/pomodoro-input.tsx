@@ -5,7 +5,7 @@ type Props = {
     onClick: (workTime: Timer, breakTime: Timer) => void
 }
 
-const PomodoroInput = (props: Props) => {
+const PomodoroInput = ({onClick}: Props) => {
     const passValues = () => {
         let pomoTime = document.getElementById("workTime")! as HTMLInputElement
         let pSeconds = parseInt(pomoTime.value)
@@ -16,13 +16,13 @@ const PomodoroInput = (props: Props) => {
         let wrk = getTimer(0, 0, pSeconds, 0)
         let brk = getTimer(0, 0, bSeconds, 0)
 
-        props.onClick(wrk, brk);
+        onClick(wrk, brk);
     }
 
     return(
         <div>
-            <div>Work Time: <input id="workTime"></input></div>
-            <div>Break Time: <input id="breakTime"></input></div>
+            <div>Work Time: <input id="workTime" /></div>
+            <div>Break Time: <input id="breakTime" /></div>
             <button onClick={ passValues }>
                 Start Timer
             </button>
