@@ -17,7 +17,7 @@ Bugs:
     [ ] Even though settings are updated, re-entering the settings page does not display the updated values
 
 Quality of Life:
-    [ ] Auto-loop upon completion of a pomodoro session
+    [x] Auto-loop upon completion of a pomodoro session @done(21-12-07 16:42)
         Include setting for this to be the default behavior
 
 Settings Page Creation:
