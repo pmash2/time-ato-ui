@@ -65,7 +65,7 @@ export class MainLayout extends Component<Props, MyState> {
         this.setState({
             currentState: {
                 phase: this.myPomo.CurrentState,
-                timeRemaining: this.myPomo.Remaining.ToString(),
+                timeRemaining: this.myPomo.Remaining.ToString(false),
                 warn: shouldWarn
             }
         })
