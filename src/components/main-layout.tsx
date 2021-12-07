@@ -17,7 +17,7 @@ export class MainLayout extends Component<MyProps, MyState> {
     private currState: PomodoroState
 
     constructor({currentState}: MyState) {
-        super({currentState});
+        super(currentState);
         this.myPomo = pomo.getPomodoro(pomo.getTimer(0, 0, 0, 0), pomo.getTimer(0, 0, 0, 0))
         this.currState = {
             phase: "TBD",
