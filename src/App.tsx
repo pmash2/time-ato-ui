@@ -28,10 +28,8 @@ function App() {
         <p>
           Welcome to Time-ato!
         </p>
-      </header>
-      <body>
         <MainLayout />
-      </body>
+      </header>
     </div>
   );
 }

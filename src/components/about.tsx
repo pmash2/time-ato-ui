@@ -14,9 +14,6 @@ const About = () => {
             </button>
             <Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center">
                 <div className="modal">
-                    <a className="close" onClick={closeModal}>
-                        &times;
-                    </a>
                     <h2>Special Thanks!</h2>
                     <ul className="thanksList">
                         <li><h4>Dave D.</h4></li>

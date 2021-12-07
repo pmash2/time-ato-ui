@@ -21,10 +21,6 @@ const Settings = ( {settings, onSave}: Props) => {
             </button>
             <Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center">
                 <div className="modal">
-                    <a className="close" onClick={closeModal}>
-                        &times;
-                    </a>
-
                     <h2>Application Settings</h2>
 
                     {settings.Inputs.map((lbl, i) =>
