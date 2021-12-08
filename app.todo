@@ -14,7 +14,8 @@ New Features:
     [ ] Themes/skins
 
 Bugs:
-    [ ] Even though settings are updated, re-entering the settings page does not display the updated values
+    [x] Even though settings are updated, re-entering the settings page does not display the updated values @done(21-12-08 08:56)
+    [ ] Changing the auto-loop setting does not immediate take effect - window must be reloaded (similar/releated to above)
 
 Quality of Life:
     [x] Auto-loop upon completion of a pomodoro session @done(21-12-07 16:42)
