@@ -9,13 +9,27 @@ type Props = {
 const PomodoroInput = ({onClick}: Props) => {
     const passValues = () => {
         let pomoTime = document.getElementById("workTime")! as HTMLInputElement
-        let pSeconds = parseInt(pomoTime.value)
+        let pTime = parseInt(pomoTime.value)
 
         let brkTime = document.getElementById("breakTime")! as HTMLInputElement
-        let bSeconds = parseInt(brkTime.value)
+        let bTime = parseInt(brkTime.value)
+        let wrk: Timer
+        let brk: Timer
 
-        let wrk = getTimer(0, 0, pSeconds, 0)
-        let brk = getTimer(0, 0, bSeconds, 0)
+        switch (process.env.NODE_ENV) {
+            case "development":
+                wrk = getTimer(0, 0, pTime, 0)
+                brk = getTimer(0, 0, bTime, 0)
+                break;
+            case "production":
+                wrk = getTimer(0, pTime, 0, 0)
+                brk = getTimer(0, bTime, 0, 0)
+                break;
+            default:
+                wrk = getTimer(0, 0, pTime, 0)
+                brk = getTimer(0, 0, bTime, 0)
+                break;
+        }
 
         onClick(wrk, brk);
     }
