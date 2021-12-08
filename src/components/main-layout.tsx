@@ -4,6 +4,7 @@ import { Pomodoro } from './pomodoro';
 import { PomodoroInput } from './pomodoro-input'
 import { PomoSettings } from '../settings-helpers';
 import { CreateNotification } from '../notifications'
+import { Logo } from './logo'
 
 type PomodoroState = {
     phase: string
@@ -82,6 +83,7 @@ export class MainLayout extends Component<Props, MyState> {
     render() {
         return (
             <div>
+                <Logo />
                 <Pomodoro pomodoroState={ this.currState } />
                 <PomodoroInput onClick={ this.startTimer } />
             </div>

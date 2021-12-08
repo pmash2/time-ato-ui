@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './style/App.css';
 import { MainLayout } from './components/main-layout';
 import { About } from './components/about';
@@ -27,7 +26,6 @@ function App() {
           <About />
           <Settings settings={settings} onSave={() => changeSettings(updateSettings(settings))} />
         </div>
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Welcome to Time-ato!
         </p>
