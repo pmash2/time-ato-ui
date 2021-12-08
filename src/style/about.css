@@ -1,3 +1,7 @@
 .thanksList {
-    list-style-type: none;
+    font-weight: bold;
+}
+
+.centered {
+    text-align: center;
 }
