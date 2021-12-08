@@ -1,19 +1,20 @@
-#phase, #remaining {
-    display: inline
+#phase,
+#remaining {
+	display: inline;
 }
 
 .warn {
-    color: red
+	color: red;
 }
 
 .pomodoro {
-    color: white
+	color: white;
 }
 
 .break {
-    color: green
+	color: green;
 }
 
 .completed {
-    color: yellow
+	color: yellow;
 }
