@@ -1,4 +1,20 @@
 import logo from '../assets/tomato.svg'
 import '../style/logo.css'
 
-export const Logo = () => <img src={logo} className="App-logo" alt="logo" id="logo" />
+interface Props {
+    spinning: boolean
+}
+
+export const Logo = ({spinning}: Props) => {
+    let classes: string[]
+    classes = ["App-logo"]
+
+    if (spinning)
+        classes.push("App-logo-spinning")
+
+    let classList = classes.join(" ")
+
+    return (
+        <img src={logo} className={classList} alt="logo" id="logo" />
+    )
+}
