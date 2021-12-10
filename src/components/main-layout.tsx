@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import * as pomo from "pomo-timer-lib"
+import * as pomo from "@pmash2/pomo-timer-lib"
 import { Pomodoro } from "./pomodoro"
 import { PomodoroInput } from "./pomodoro-input"
 import { PomoSettings } from "../settings-helpers"

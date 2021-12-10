@@ -1,5 +1,5 @@
 import React from "react"
-import { Timer, getTimer } from "pomo-timer-lib"
+import { Timer, getTimer } from "@pmash2/pomo-timer-lib"
 import { LoadSettings } from "../settings-helpers"
 
 type Props = {
