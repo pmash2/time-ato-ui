@@ -26,7 +26,7 @@ function App() {
 					<About />
 					<Settings settings={settings} onSave={() => changeSettings(updateSettings(settings))} />
 				</div>
-				<p>Welcome to Time-ato!</p>
+				<p>Time-ato</p>
 				<MainLayout settings={settings} />
 			</header>
 		</div>
