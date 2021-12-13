@@ -1,6 +1,7 @@
 import React from "react"
 import { Timer, getTimer } from "@pmash2/pomo-timer-lib"
 import { LoadSettings } from "../settings-helpers"
+import "../style/pomodoro-input.css"
 
 type Props = {
 	onClick: (workTime: Timer, breakTime: Timer) => void
@@ -44,12 +45,16 @@ const PomodoroInput = ({ onClick }: Props) => {
 
 	return (
 		<div>
-			<div>
-				Work Time: <input id="workTime" />
-			</div>
-			<div>
-				Break Time: <input id="breakTime" />
-			</div>
+			<form id="pomoInputs">
+				<div>
+					<label>Work Time:</label>
+					<input id="workTime" />
+				</div>
+				<div>
+					<label>Break Time:</label>
+					<input id="breakTime" />
+				</div>
+			</form>
 			<button onClick={passValues}>Start Timer</button>
 			<button onClick={loadDefaults}>Load Defaults</button>
 		</div>
