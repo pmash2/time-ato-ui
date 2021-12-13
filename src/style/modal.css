@@ -1,4 +1,15 @@
 .modal {
 	background-color: cornflowerblue;
 	display: grid;
+	border-radius: .5em;
+	border-width: 2em;
+	border-color: springgreen;
+}
+
+.modalHeader {
+	text-align: center;
+	font-size: larger;
+	font-weight: bolder;
+	padding-top: .25em;
+	padding-bottom: .5em;
 }

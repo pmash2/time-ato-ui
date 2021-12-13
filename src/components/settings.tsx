@@ -4,6 +4,7 @@ import "../style/modal.css"
 import { SettingsInput } from "./settings-input"
 import { SettingsCheckbox } from "./settings-checkbox"
 import { PomoSettings } from "../settings-helpers"
+import "../style/settings.css"
 
 interface Props {
 	settings: PomoSettings
@@ -21,7 +22,7 @@ const Settings = ({ settings, onSave }: Props) => {
 			</button>
 			<Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center">
 				<div className="modal">
-					<h2>Application Settings</h2>
+					<span className="modalHeader">Application Settings</span>
 
 					{settings.Inputs.map((lbl, i) => (
 						<SettingsInput {...lbl} key={i} />
