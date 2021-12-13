@@ -18,5 +18,6 @@ RUN npm run build
 FROM node AS production
 COPY --from=builder /app/build .
 COPY --from=builder /app/package.json .
+EXPOSE 3000
 
-CMD ["npx", "serve"]
+CMD ["npx", "serve", "-l", "3000"]
