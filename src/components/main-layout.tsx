@@ -36,36 +36,42 @@ export class MainLayout extends Component<Props, MyState> {
 		this.pomoIsActive = false
 	}
 
-	startTimer = (wrk: pomo.Timer, brk: pomo.Timer) => {
+	handleTimer = (wrk: pomo.Timer, brk: pomo.Timer) => {
 		console.log("Button clicked")
-		this.pomoIsActive = true
 
-		this.myPomo = pomo.getPomodoro(wrk, brk)
+		if (!this.pomoIsActive) {
+			this.pomoIsActive = true
 
-		this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
-			console.log("POMODORO COMPLETE")
+			this.myPomo = pomo.getPomodoro(wrk, brk)
 
-			let title = "Time-ato" as string
-			let body = "Pomodoro completed!" as string
-			CreateNotification({ title, body })
-		})
+			this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
+				console.log("POMODORO COMPLETE")
 
-		this.myPomo.on(pomo.EmitString.BreakComplete, () => {
-			console.log(`BREAK COMPLETE - Restart? ${this.settings.Checkboxes[0].checked}`)
+				let title = "Time-ato" as string
+				let body = "Pomodoro completed!" as string
+				CreateNotification({ title, body })
+			})
+
+			this.myPomo.on(pomo.EmitString.BreakComplete, () => {
+				console.log(`BREAK COMPLETE - Restart? ${this.settings.Checkboxes[0].checked}`)
+				this.pomoIsActive = false
+
+				let title = "Time-ato" as string
+				let body = "Break completed! Get back to work!" as string
+				CreateNotification({ title, body })
+
+				if (this.settings.Checkboxes[0].checked) {
+					this.myPomo.restart()
+					this.pomoIsActive = true
+				}
+			})
+
+			this.myPomo.start()
+			setInterval(this.countDown, 50)
+		} else {
+			this.myPomo.stop()
 			this.pomoIsActive = false
-
-			let title = "Time-ato" as string
-			let body = "Break completed! Get back to work!" as string
-			CreateNotification({ title, body })
-
-			if (this.settings.Checkboxes[0].checked) {
-				this.myPomo.restart()
-				this.pomoIsActive = true
-			}
-		})
-
-		this.myPomo.start()
-		setInterval(this.countDown, 50)
+		}
 	}
 
 	countDown = () => {
@@ -93,7 +99,7 @@ export class MainLayout extends Component<Props, MyState> {
 			<div>
 				<Logo spinning={this.pomoIsActive} />
 				<Pomodoro pomodoroState={this.currState} />
-				<PomodoroInput onClick={this.startTimer} />
+				<PomodoroInput onClick={this.handleTimer} pomoRunning={this.pomoIsActive} />
 			</div>
 		)
 	}

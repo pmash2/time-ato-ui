@@ -5,9 +5,10 @@ import "../style/pomodoro-input.css"
 
 type Props = {
 	onClick: (workTime: Timer, breakTime: Timer) => void
+	pomoRunning: boolean
 }
 
-const PomodoroInput = ({ onClick }: Props) => {
+const PomodoroInput = ({ onClick, pomoRunning }: Props) => {
 	const passValues = () => {
 		let pomoTime = document.getElementById("workTime")! as HTMLInputElement
 		let pTime = parseInt(pomoTime.value)
@@ -55,7 +56,7 @@ const PomodoroInput = ({ onClick }: Props) => {
 					<input id="breakTime" />
 				</div>
 			</form>
-			<button onClick={passValues}>Start Timer</button>
+			<button onClick={passValues}>{pomoRunning ? "Stop Timer" : "Start Timer"}</button>
 			<button onClick={loadDefaults}>Load Defaults</button>
 		</div>
 	)
