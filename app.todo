@@ -27,6 +27,8 @@ Quality of Life:
 Cosmetics:
     [ ] Add tooltips to inputs on settings modal
     [ ] Add close button to modals
+    [ ] Add small caps to modal texts
+    [ ] Adjust modal sizes when browser window is smaller in size
 
 Settings Page Creation:
     [x] Default lengths @done(21-12-07 15:05)
