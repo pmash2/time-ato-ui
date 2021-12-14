@@ -18,3 +18,7 @@
 .completed {
 	color: yellow;
 }
+
+.pomodoro {
+	font-variant: small-caps;
+}

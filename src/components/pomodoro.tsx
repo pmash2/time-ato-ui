@@ -13,7 +13,7 @@ export const Pomodoro = ({ pomodoroState }: Props) => {
 	const shouldWarn = pomodoroState.warn ? "warn" : ""
 
 	return (
-		<div>
+		<div className="pomodoro">
 			<div>
 				Current State:{" "}
 				<div id="phase" className={pomodoroState.phase.toLowerCase()}>
