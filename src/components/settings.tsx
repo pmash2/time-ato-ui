@@ -17,10 +17,14 @@ const Settings = ({ settings, onSave }: Props) => {
 
 	return (
 		<div>
-			<button type="button" onClick={() => setOpen((o) => !o)}>
-				Settings
-			</button>
-			<Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center">
+			<Popup
+				trigger={<button>Settings</button>}
+				open={open}
+				closeOnDocumentClick
+				onClose={closeModal}
+				position="center center"
+				modal
+			>
 				<div className="modal">
 					<span className="modalHeader">Application Settings</span>
 

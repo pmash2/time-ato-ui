@@ -11,10 +11,14 @@ const About = () => {
 
 	return (
 		<div>
-			<button type="button" onClick={() => setOpen((o) => !o)}>
-				About
-			</button>
-			<Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center">
+			<Popup
+				trigger={<button>About</button>}
+				open={open}
+				closeOnDocumentClick
+				onClose={closeModal}
+				position="center center"
+				modal
+			>
 				<div className="modal">
 					<h1 className="centered">Special Thanks!</h1>
 					<p className="thanksList centered">
