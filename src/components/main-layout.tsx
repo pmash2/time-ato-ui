@@ -38,22 +38,17 @@ export class MainLayout extends Component<Props, MyState> {
 	}
 
 	handleTimer = (wrk: pomo.Timer, brk: pomo.Timer) => {
-		console.log("Button clicked")
-
 		if (!this.state.pomoActive) {
 			this.setState({ ...this.state, pomoActive: true })
 			this.myPomo = pomo.getPomodoro(wrk, brk)
 
 			this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
-				console.log("POMODORO COMPLETE")
-
 				let title = "Time-ato" as string
 				let body = "Pomodoro completed!" as string
 				CreateNotification({ title, body })
 			})
 
 			this.myPomo.on(pomo.EmitString.BreakComplete, () => {
-				console.log(`BREAK COMPLETE - Restart? ${this.state.settings.Checkboxes[0].checked}`)
 				this.setState({ ...this.state, pomoActive: false })
 
 				let title = "Time-ato" as string
