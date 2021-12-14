@@ -15,33 +15,33 @@ type Props = {
 	settings: PomoSettings
 }
 type MyState = {
-	currentState: PomodoroState
+	pomoState: PomodoroState
+	settings: PomoSettings
+	pomoActive: boolean
 }
 
 export class MainLayout extends Component<Props, MyState> {
 	private myPomo: pomo.Pomodoro
-	private currState: PomodoroState
-	private settings: PomoSettings
-	private pomoIsActive: boolean
 
 	constructor({ settings }: Props) {
 		super({ settings })
 		this.myPomo = pomo.getPomodoro(pomo.getTimer(0, 0, 0, 0), pomo.getTimer(0, 0, 0, 0))
-		this.currState = {
-			phase: "TBD",
-			timeRemaining: "0:00",
-			warn: false,
+		this.state = {
+			pomoState: {
+				phase: "TBD",
+				timeRemaining: "0:00",
+				warn: false,
+			},
+			settings: settings,
+			pomoActive: false,
 		}
-		this.settings = settings
-		this.pomoIsActive = false
 	}
 
 	handleTimer = (wrk: pomo.Timer, brk: pomo.Timer) => {
 		console.log("Button clicked")
 
-		if (!this.pomoIsActive) {
-			this.pomoIsActive = true
-
+		if (!this.state.pomoActive) {
+			this.setState({ ...this.state, pomoActive: true })
 			this.myPomo = pomo.getPomodoro(wrk, brk)
 
 			this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
@@ -53,16 +53,16 @@ export class MainLayout extends Component<Props, MyState> {
 			})
 
 			this.myPomo.on(pomo.EmitString.BreakComplete, () => {
-				console.log(`BREAK COMPLETE - Restart? ${this.settings.Checkboxes[0].checked}`)
-				this.pomoIsActive = false
+				console.log(`BREAK COMPLETE - Restart? ${this.state.settings.Checkboxes[0].checked}`)
+				this.setState({ ...this.state, pomoActive: false })
 
 				let title = "Time-ato" as string
 				let body = "Break completed! Get back to work!" as string
 				CreateNotification({ title, body })
 
-				if (this.settings.Checkboxes[0].checked) {
+				if (this.state.settings.Checkboxes[0].checked) {
 					this.myPomo.restart()
-					this.pomoIsActive = true
+					this.setState({ ...this.state, pomoActive: true })
 				}
 			})
 
@@ -70,21 +70,21 @@ export class MainLayout extends Component<Props, MyState> {
 			setInterval(this.countDown, 50)
 		} else {
 			this.myPomo.stop()
-			this.pomoIsActive = false
+			this.setState({ ...this.setState, pomoActive: false })
 		}
 	}
 
 	countDown = () => {
-		let shouldWarn = this.getRemainingPercent() < +this.settings.Inputs[2].value
+		let shouldWarn = this.getRemainingPercent() < +this.state.settings.Inputs[2].value
 
 		this.setState({
-			currentState: {
+			...this.state,
+			pomoState: {
 				phase: this.myPomo.CurrentState,
 				timeRemaining: this.myPomo.Remaining.ToString(false),
 				warn: shouldWarn,
 			},
 		})
-		this.currState = this.state.currentState
 	}
 
 	getRemainingPercent = (): number => {
@@ -97,9 +97,9 @@ export class MainLayout extends Component<Props, MyState> {
 	render() {
 		return (
 			<div>
-				<Logo spinning={this.pomoIsActive} />
-				<Pomodoro pomodoroState={this.currState} />
-				<PomodoroInput onClick={this.handleTimer} pomoRunning={this.pomoIsActive} />
+				<Logo spinning={this.state.pomoActive} />
+				<Pomodoro pomodoroState={this.state.pomoState} />
+				<PomodoroInput onClick={this.handleTimer} pomoRunning={this.state.pomoActive} />
 			</div>
 		)
 	}
