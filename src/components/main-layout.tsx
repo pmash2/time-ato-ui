@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import * as pomo from "@pmash2/pomo-timer-lib"
+import * as pLib from "@pmash2/pomo-timer-lib"
 import { Pomodoro } from "./pomodoro"
 import { PomodoroInput } from "./pomodoro-input"
 import { PomoSettings } from "../settings-helpers"
@@ -21,11 +21,11 @@ type MyState = {
 }
 
 export class MainLayout extends Component<Props, MyState> {
-	private myPomo: pomo.Pomodoro
+	private myPomo: pLib.Pomodoro
 
 	constructor({ settings }: Props) {
 		super({ settings })
-		this.myPomo = pomo.getPomodoro(pomo.getTimer(0, 0, 0, 0), pomo.getTimer(0, 0, 0, 0))
+		this.myPomo = pLib.getPomodoro(pLib.getTimer(0, 0, 0, 0), pLib.getTimer(0, 0, 0, 0))
 		this.state = {
 			pomoState: {
 				phase: "TBD",
@@ -37,18 +37,18 @@ export class MainLayout extends Component<Props, MyState> {
 		}
 	}
 
-	handleTimer = (wrk: pomo.Timer, brk: pomo.Timer) => {
+	handleTimer = (wrk: pLib.Timer, brk: pLib.Timer) => {
 		if (!this.state.pomoActive) {
 			this.setState({ ...this.state, pomoActive: true })
-			this.myPomo = pomo.getPomodoro(wrk, brk)
+			this.myPomo = pLib.getPomodoro(wrk, brk)
 
-			this.myPomo.on(pomo.EmitString.PomodoroComplete, () => {
+			this.myPomo.on(pLib.EmitString.PomodoroComplete, () => {
 				let title = "Time-ato" as string
 				let body = "Pomodoro completed!" as string
 				CreateNotification({ title, body })
 			})
 
-			this.myPomo.on(pomo.EmitString.BreakComplete, () => {
+			this.myPomo.on(pLib.EmitString.BreakComplete, () => {
 				this.setState({ ...this.state, pomoActive: false })
 
 				let title = "Time-ato" as string
@@ -83,8 +83,8 @@ export class MainLayout extends Component<Props, MyState> {
 	}
 
 	getRemainingPercent = (): number => {
-		let totalTime = pomo.TimeUtilities.TimeToMs(this.myPomo.OriginalTime)
-		let remaining = pomo.TimeUtilities.TimeToMs(this.myPomo.Remaining)
+		let totalTime = pLib.TimeUtilities.TimeToMs(this.myPomo.OriginalTime)
+		let remaining = pLib.TimeUtilities.TimeToMs(this.myPomo.Remaining)
 
 		return Math.round((remaining / totalTime) * 100)
 	}
