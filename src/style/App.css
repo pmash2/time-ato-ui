@@ -30,6 +30,7 @@ button {
 	padding: .5em 2em;
 	color: white;
 	font-size: medium;
+	font-variant: small-caps;
 }
 
 input {
