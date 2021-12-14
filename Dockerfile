@@ -20,4 +20,4 @@ COPY --from=builder /app/build .
 COPY --from=builder /app/package.json .
 EXPOSE 3000
 
-CMD ["npx", "serve", "-l", "3000"]
+CMD ["npx", "--yes", "serve", "-l", "3000"]
