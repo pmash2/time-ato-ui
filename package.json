@@ -1,6 +1,6 @@
 {
 	"name": "time-ato-ui",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"private": true,
 	"dependencies": {
 		"@pmash2/pomo-timer-lib": "^0.4.3",
