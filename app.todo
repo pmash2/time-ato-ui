@@ -12,14 +12,20 @@ New Features:
     [ ] Optional notifications when warning threshold is hit
     [x] About page @done(21-12-06 14:56)
     [ ] Themes/skins
+    [ ] Make windows notifications configurable via setting
 
 Bugs:
     [x] Even though settings are updated, re-entering the settings page does not display the updated values @done(21-12-08 08:56)
     [ ] Changing the auto-loop setting does not immediate take effect - window must be reloaded (similar/releated to above)
+    [ ] Adding `float: right` to input selector in `settings.css` is affecting more than just inputs in the settings modal
 
 Quality of Life:
     [x] Auto-loop upon completion of a pomodoro session @done(21-12-07 16:42)
         Include setting for this to be the default behavior
+
+Cosmetics:
+    [ ] Add tooltips to inputs on settings modal
+    [ ] Add close button to modals
 
 Settings Page Creation:
     [x] Default lengths @done(21-12-07 15:05)
