@@ -44,6 +44,12 @@ export const CurrentSettingsOptions: PomoSettings = {
 			checked: false,
 			tooltip: "Should a new pomodoro phase start after current one completes?",
 		},
+		{
+			text: "Show phase change notifications",
+			id: "show-notifications",
+			checked: false,
+			tooltip: "When a pomodoro or break completes, should a notification be sent to the desktop?",
+		},
 	],
 }
 

@@ -10,7 +10,6 @@ New Features:
         This might be a little much for every cycle...
     [ ] Optional notifications when warning threshold is hit
     [ ] Themes/skins
-    [ ] Make windows notifications configurable via setting
 
 Bugs:
     [ ] Changing the auto-loop setting does not immediate take effect - window must be reloaded (similar/releated to above)
@@ -30,6 +29,7 @@ Teams Integration:
     [ ] Mark user as DND/Busy and Available based on timer status
 
 Archive:
+  [x] Make windows notifications configurable via setting @done(21-12-15 15:05) @project(New Features)
   [x] Add small caps to modal texts @done(21-12-15 14:34) @project(Cosmetics)
   [x] Add tooltips to inputs on settings modal @done(21-12-15 14:31) @project(Cosmetics)
   [x] Migrate pomo-timer-lib to npm to reduce complexities in build @done(21-12-15 12:08) @project(Dev Niceties)

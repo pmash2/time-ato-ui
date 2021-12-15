@@ -20,8 +20,6 @@ type MyState = {
 	pomoActive: boolean
 }
 
-const sendNotification = (message: string): void => CreateNotification({ title: "Time-ato", body: message })
-
 const getPercentDone = (partial: pLib.Time, total: pLib.Time): number => {
 	let totalTime = pLib.TimeUtilities.TimeToMs(partial)
 	let remaining = pLib.TimeUtilities.TimeToMs(total)
@@ -51,11 +49,12 @@ export class MainLayout extends Component<Props, MyState> {
 			this.setState({ ...this.state, pomoActive: true })
 			this.myPomo = pLib.getPomodoro(wrk, brk)
 
-			this.myPomo.on(pLib.EmitString.PomodoroComplete, () => sendNotification("Pomodoro completed!"))
+			this.myPomo.on(pLib.EmitString.PomodoroComplete, () => this.notify("Pomodoro completed!"))
 
 			this.myPomo.on(pLib.EmitString.BreakComplete, () => {
 				this.setState({ ...this.state, pomoActive: false })
-				sendNotification("Break completed! Get back to work!")
+
+				this.notify("Break completed! Get back to work!")
 
 				if (this.state.settings.Checkboxes[0].checked) {
 					this.myPomo.restart()
@@ -83,6 +82,12 @@ export class MainLayout extends Component<Props, MyState> {
 				warn: shouldWarn,
 			},
 		})
+	}
+
+	notify = (msg: string): void => {
+		if (this.state.settings.Checkboxes[1].checked) {
+			CreateNotification({ title: "Time-ato", body: msg })
+		}
 	}
 
 	render() {
