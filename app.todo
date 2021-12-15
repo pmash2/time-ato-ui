@@ -19,7 +19,6 @@ Dev Niceties:
     [ ] Can the overall docker image size be reduced? It currently seems way too big
 
 Cosmetics:
-    [ ] Add tooltips to inputs on settings modal
     [ ] Add close button to modals
     [ ] Add small caps to modal texts
     [ ] Adjust modal sizes when browser window is smaller in size
@@ -32,6 +31,7 @@ Teams Integration:
     [ ] Mark user as DND/Busy and Available based on timer status
 
 Archive:
+  [x] Add tooltips to inputs on settings modal @done(21-12-15 14:31) @project(Cosmetics)
   [x] Migrate pomo-timer-lib to npm to reduce complexities in build @done(21-12-15 12:08) @project(Dev Niceties)
   [x] Add 'Stop Timer' button @done(21-12-14 15:53) @project(New Features)
   [x] Even though settings are updated, re-entering the settings page does not display the updated values @done(21-12-08 08:56) @project(Bugs)
