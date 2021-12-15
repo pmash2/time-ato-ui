@@ -20,6 +20,15 @@ type MyState = {
 	pomoActive: boolean
 }
 
+const sendNotification = (message: string): void => CreateNotification({ title: "Time-ato", body: message })
+
+const getPercentDone = (partial: pLib.Time, total: pLib.Time): number => {
+	let totalTime = pLib.TimeUtilities.TimeToMs(partial)
+	let remaining = pLib.TimeUtilities.TimeToMs(total)
+
+	return Math.round((remaining / totalTime) * 100)
+}
+
 export class MainLayout extends Component<Props, MyState> {
 	private myPomo: pLib.Pomodoro
 
@@ -42,18 +51,11 @@ export class MainLayout extends Component<Props, MyState> {
 			this.setState({ ...this.state, pomoActive: true })
 			this.myPomo = pLib.getPomodoro(wrk, brk)
 
-			this.myPomo.on(pLib.EmitString.PomodoroComplete, () => {
-				let title = "Time-ato" as string
-				let body = "Pomodoro completed!" as string
-				CreateNotification({ title, body })
-			})
+			this.myPomo.on(pLib.EmitString.PomodoroComplete, () => sendNotification("Pomodoro completed!"))
 
 			this.myPomo.on(pLib.EmitString.BreakComplete, () => {
 				this.setState({ ...this.state, pomoActive: false })
-
-				let title = "Time-ato" as string
-				let body = "Break completed! Get back to work!" as string
-				CreateNotification({ title, body })
+				sendNotification("Break completed! Get back to work!")
 
 				if (this.state.settings.Checkboxes[0].checked) {
 					this.myPomo.restart()
@@ -70,7 +72,8 @@ export class MainLayout extends Component<Props, MyState> {
 	}
 
 	countDown = () => {
-		let shouldWarn = this.getRemainingPercent() < +this.state.settings.Inputs[2].value
+		let shouldWarn =
+			getPercentDone(this.myPomo.Remaining, this.myPomo.OriginalTime) < +this.state.settings.Inputs[2].value
 
 		this.setState({
 			...this.state,
@@ -80,13 +83,6 @@ export class MainLayout extends Component<Props, MyState> {
 				warn: shouldWarn,
 			},
 		})
-	}
-
-	getRemainingPercent = (): number => {
-		let totalTime = pLib.TimeUtilities.TimeToMs(this.myPomo.OriginalTime)
-		let remaining = pLib.TimeUtilities.TimeToMs(this.myPomo.Remaining)
-
-		return Math.round((remaining / totalTime) * 100)
 	}
 
 	render() {
