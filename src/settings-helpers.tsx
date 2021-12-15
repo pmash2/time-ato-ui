@@ -2,11 +2,13 @@ export interface PomoInputSetting {
 	text: string
 	id: string
 	value: string
+	tooltip: string
 }
 export interface PomoCheckboxSetting {
 	text: string
 	id: string
 	checked: boolean
+	tooltip: string
 }
 
 export interface PomoSettings {
@@ -20,16 +22,19 @@ export const CurrentSettingsOptions: PomoSettings = {
 			text: "Default Pomodoro Length",
 			id: "default-pomo-length",
 			value: "",
+			tooltip: "Default length of pomodoro phase",
 		},
 		{
 			text: "Default Break Length",
 			id: "default-break-length",
 			value: "",
+			tooltip: "Default length of break phase",
 		},
 		{
 			text: "Warning Threshold (%)",
 			id: "warn-threshold",
 			value: "",
+			tooltip: "Percent complete at which warning of phase should occur",
 		},
 	],
 	Checkboxes: [
@@ -37,6 +42,7 @@ export const CurrentSettingsOptions: PomoSettings = {
 			text: "Auto-loop pomodoros",
 			id: "auto-loop",
 			checked: false,
+			tooltip: "Should a new pomodoro phase start after current one completes?",
 		},
 	],
 }

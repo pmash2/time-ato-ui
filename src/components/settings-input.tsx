@@ -1,10 +1,13 @@
 import { PomoInputSetting } from "../settings-helpers"
+import Popup from "reactjs-popup"
 
-const SettingsInput = ({ text, id, value }: PomoInputSetting) => {
+const SettingsInput = ({ text, id, value, tooltip }: PomoInputSetting) => {
 	return (
 		<div>
 			<label>{text}</label>
-			<input id={id} defaultValue={value} />
+			<Popup trigger={<input id={id} defaultValue={value} />} position="right center" className="tooltip">
+				{tooltip}
+			</Popup>
 		</div>
 	)
 }
