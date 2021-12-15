@@ -1,9 +1,5 @@
 .modal {
-	background-color: cornflowerblue;
 	display: grid;
-	border-radius: .5em;
-	border-width: 2em;
-	border-color: springgreen;
 }
 
 .modalHeader {
@@ -12,6 +8,35 @@
 	font-weight: bolder;
 	padding-top: .25em;
 	padding-bottom: .5em;
+}
+
+.popup-content {  
+	margin: auto;  
+	background: var(--tLight-red);
+	width: 50%; 
+	padding: 5px;
+	border-radius: .5em;
+	color: var(--tDark-green)
+}
+
+.popup-arrow { 
+	color: var(--tDark-red);
+}
+
+[role='tooltip'].popup-content {  
+	width: 200px;  
+	background: var(--tBright-red);
+	font-size: medium;
+	color: var(--tYellow);
+	text-align: center;
+}
+
+.popup-overlay {  
+	background: rgba(0, 0, 0, 0.5);
+}
+
+[data-popup='tooltip'].popup-overlay {  
+	background: transparent;
 }
 
 /* animation */
