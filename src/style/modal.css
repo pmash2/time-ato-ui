@@ -16,7 +16,8 @@
 	width: 50%; 
 	padding: 5px;
 	border-radius: .5em;
-	color: var(--tDark-green)
+	color: var(--tDark-green);
+	font-variant: small-caps;
 }
 
 .popup-arrow { 
@@ -29,6 +30,7 @@
 	font-size: medium;
 	color: var(--tYellow);
 	text-align: center;
+	font-variant: small-caps;
 }
 
 .popup-overlay {  

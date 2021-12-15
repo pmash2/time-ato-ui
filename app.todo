@@ -20,7 +20,6 @@ Dev Niceties:
 
 Cosmetics:
     [ ] Add close button to modals
-    [ ] Add small caps to modal texts
     [ ] Adjust modal sizes when browser window is smaller in size
     [ ] Add information to tab title?
         Either current state or maybe even time remaining?
@@ -31,6 +30,7 @@ Teams Integration:
     [ ] Mark user as DND/Busy and Available based on timer status
 
 Archive:
+  [x] Add small caps to modal texts @done(21-12-15 14:34) @project(Cosmetics)
   [x] Add tooltips to inputs on settings modal @done(21-12-15 14:31) @project(Cosmetics)
   [x] Migrate pomo-timer-lib to npm to reduce complexities in build @done(21-12-15 12:08) @project(Dev Niceties)
   [x] Add 'Stop Timer' button @done(21-12-14 15:53) @project(New Features)
