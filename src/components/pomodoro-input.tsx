@@ -45,7 +45,7 @@ const PomodoroInput = ({ onClick, pomoRunning }: Props) => {
 	}
 
 	return (
-		<div className="pomodoroInput">
+		<div>
 			<form id="pomoInputs">
 				<div>
 					<label>Work Time:</label>
