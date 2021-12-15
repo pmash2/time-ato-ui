@@ -4,14 +4,11 @@ LABEL author "Phil Ashton"
 
 ENV NODE_ENV production
 ENV PATH /app/node_modules/.bin:$PATH
-ARG GH_TOKEN
 
 WORKDIR /app
 COPY package.json .
 COPY package-lock.json .
-COPY .npmrc .
 RUN npm install
-RUN rm -f .npmrc
 COPY . .
 RUN npm run build
 
