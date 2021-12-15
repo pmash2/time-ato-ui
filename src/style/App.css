@@ -9,7 +9,7 @@
 
 .App {
 	text-align: center;
-	background-color: #282c34;
+	background-color: var(--tDark-green);
 	min-height: 100vh;
 	font-size: calc(10px + 2vmin);
 	color: var(--tYellow);
@@ -35,7 +35,7 @@
 }
 
 button {
-	background-color: #EF2020;
+	background-color: var(--tDark-red);
 	border-radius: 2em;
 	padding: .5em 2em;
 	color: white;
