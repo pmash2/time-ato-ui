@@ -67,3 +67,25 @@ div {
 	font-size: xx-large;
 	font-family: Arial, Helvetica, sans-serif;
 }
+
+input[type="checkbox"] {
+	appearance: none;
+	background-color: gainsboro;
+	margin: .7em;
+	display: grid;
+	place-content: center;
+  }
+
+  input[type="checkbox"]::before {
+	content: "";
+	width: 0.85em;
+	height: 0.85em;
+	transform: scale(0);
+	transition: 180ms transform ease-in-out;
+  }
+
+  input[type="checkbox"]:checked::before {
+	transform: scale(1);
+	background-size: 100%;
+	background-image: url("../assets/tomato.svg");
+  }
