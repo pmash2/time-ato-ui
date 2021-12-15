@@ -23,6 +23,8 @@ Cosmetics:
     [ ] Add close button to modals
     [ ] Add small caps to modal texts
     [ ] Adjust modal sizes when browser window is smaller in size
+    [ ] Add information to tab title?
+        Either current state or maybe even time remaining?
 
 Teams Integration:
     [ ] Figure out integration with Teams
