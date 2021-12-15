@@ -8,21 +8,12 @@ New Features:
         Mood? 1-5
         Focus? 1-5
         This might be a little much for every cycle...
-    [x] Send timer notifications to user via Windows Notifications System @done(21-12-07 17:09)
     [ ] Optional notifications when warning threshold is hit
-    [x] About page @done(21-12-06 14:56)
     [ ] Themes/skins
     [ ] Make windows notifications configurable via setting
-    [x] Add 'Stop Timer' button @done(21-12-14 15:53)
 
 Bugs:
-    [x] Even though settings are updated, re-entering the settings page does not display the updated values @done(21-12-08 08:56)
     [ ] Changing the auto-loop setting does not immediate take effect - window must be reloaded (similar/releated to above)
-    [x] Adding `float: right` to input selector in `settings.css` is affecting more than just inputs in the settings modal @done(21-12-14 10:47)
-
-Quality of Life:
-    [x] Auto-loop upon completion of a pomodoro session @done(21-12-07 16:42)
-        Include setting for this to be the default behavior
 
 Dev Niceties:
     [ ] Can the overall docker image size be reduced? It currently seems way too big
@@ -34,11 +25,18 @@ Cosmetics:
     [ ] Add small caps to modal texts
     [ ] Adjust modal sizes when browser window is smaller in size
 
-Settings Page Creation:
-    [x] Default lengths @done(21-12-07 15:05)
-    [x] Warning threshold % @done(21-12-07 16:21)
-
 Teams Integration:
     [ ] Figure out integration with Teams
     [ ] Optionally use user input of work description in Teams Status message
     [ ] Mark user as DND/Busy and Available based on timer status
+
+Archive:
+  [x] Add 'Stop Timer' button @done(21-12-14 15:53) @project(New Features)
+  [x] Even though settings are updated, re-entering the settings page does not display the updated values @done(21-12-08 08:56) @project(Bugs)
+  [x] Adding `float: right` to input selector in `settings.css` is affecting more than just inputs in the settings modal @done(21-12-14 10:47) @project(Bugs)
+  [x] Auto-loop upon completion of a pomodoro session @done(21-12-07 16:42) @project(Quality of Life)
+    Include setting for this to be the default behavior
+  [x] Send timer notifications to user via Windows Notifications System @done(21-12-07 17:09) @project(New Features)
+  [x] About page @done(21-12-06 14:56) @project(New Features)
+  [x] Default lengths @done(21-12-07 15:05) @project(Settings Page Creation)
+  [x] Warning threshold % @done(21-12-07 16:21) @project(Settings Page Creation)
