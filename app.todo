@@ -24,6 +24,10 @@ Quality of Life:
     [x] Auto-loop upon completion of a pomodoro session @done(21-12-07 16:42)
         Include setting for this to be the default behavior
 
+Dev Niceties:
+    [ ] Can the overall docker image size be reduced? It currently seems way too big
+    [ ] Migrate pomo-timer-lib to npm to reduce complexities in build
+
 Cosmetics:
     [ ] Add tooltips to inputs on settings modal
     [ ] Add close button to modals
