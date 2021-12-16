@@ -1,5 +1,6 @@
 .modal {
 	display: grid;
+	font-variant: small-caps;
 }
 
 .modalHeader {
