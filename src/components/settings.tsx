@@ -14,18 +14,16 @@ interface Props {
 const Settings = ({ settings, onSave }: Props) => {
 	const [open, setOpen] = useState(false)
 	const closeModal = (): void => setOpen(false)
+	const openModal = (): void => setOpen(true)
 
 	return (
 		<div>
-			<Popup
-				trigger={<button>Settings</button>}
-				open={open}
-				closeOnDocumentClick
-				onClose={closeModal}
-				position="center center"
-				modal
-			>
+			<button onClick={openModal}>Settings</button>
+			<Popup open={open} closeOnDocumentClick onClose={closeModal} position="center center" modal>
 				<div className="modal">
+					<button className="close" onClick={closeModal}>
+						&times;
+					</button>
 					<span className="modalHeader">Application Settings</span>
 
 					{settings.Inputs.map((lbl, i) => (

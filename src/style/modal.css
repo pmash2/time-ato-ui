@@ -40,6 +40,20 @@
 	background: transparent;
 }
 
+.modal > .close {
+	cursor: pointer;
+	position: absolute;
+	display: block;
+	padding: 2px 5px 4px;
+	line-height: 20px;
+	right: -10px;
+	top: -10px;
+	font-size: 20px;
+	background: var(--tDark-red);
+	border-radius: 18px;
+	border: 1px solid #cfcece;
+}
+
 /* animation */
 @keyframes modal {
 	0% {

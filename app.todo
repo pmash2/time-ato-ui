@@ -18,7 +18,6 @@ Dev Niceties:
     [ ] Can the overall docker image size be reduced? It currently seems way too big
 
 Cosmetics:
-    [ ] Add close button to modals
     [ ] Adjust modal sizes when browser window is smaller in size
     [ ] Add information to tab title?
         Either current state or maybe even time remaining?
@@ -29,6 +28,7 @@ Teams Integration:
     [ ] Mark user as DND/Busy and Available based on timer status
 
 Archive:
+  [x] Add close button to modals @done(21-12-16 15:42) @project(Cosmetics)
   [x] Make windows notifications configurable via setting @done(21-12-15 15:05) @project(New Features)
   [x] Add small caps to modal texts @done(21-12-15 14:34) @project(Cosmetics)
   [x] Add tooltips to inputs on settings modal @done(21-12-15 14:31) @project(Cosmetics)

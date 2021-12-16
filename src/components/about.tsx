@@ -7,12 +7,13 @@ const package_json = require("../../package.json")
 const About = () => {
 	const [open, setOpen] = useState(false)
 	const closeModal = () => setOpen(false)
+	const openModal = (): void => setOpen(true)
 	const version = package_json.version
 
 	return (
 		<div>
+			<button onClick={openModal}>About</button>
 			<Popup
-				trigger={<button>About</button>}
 				open={open}
 				closeOnDocumentClick
 				onClose={closeModal}
@@ -20,6 +21,9 @@ const About = () => {
 				modal
 			>
 				<div className="modal">
+					<button className="close" onClick={closeModal}>
+						&times;
+					</button>
 					<h1 className="centered">Special Thanks!</h1>
 					<p className="thanksList centered">
 						Dave D.
