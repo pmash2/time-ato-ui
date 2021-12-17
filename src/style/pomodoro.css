@@ -1,20 +1,20 @@
 #phase,
 #remaining {
-	display: inline;
+  display: inline;
 }
 
 .warn {
-	color: red;
+  color: red;
 }
 
 .pomodoro {
-	color: white;
+  color: white;
 }
 
 .break {
-	color: rgb(8, 230, 8);
+  color: rgb(8, 230, 8);
 }
 
 .completed {
-	color: yellow;
+  color: yellow;
 }
