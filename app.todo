@@ -17,9 +17,6 @@ Bugs:
         so once it's instantiated, the constructor isn't called again, which is where the settings would be updated
         Maybe changing `main-layout` to a function component fixes this
 
-Dev Niceties:
-    [ ] Can the overall docker image size be reduced? It currently seems way too big
-
 Cosmetics:
     [ ] Adjust modal sizes when browser window is smaller in size
     [ ] Add information to tab title?
@@ -31,6 +28,7 @@ Teams Integration:
     [ ] Mark user as DND/Busy and Available based on timer status
 
 Archive:
+  [x] Can the overall docker image size be reduced? It currently seems way too big @done(21-12-17 15:13) @project(Dev Niceties)
   [x] Add close button to modals @done(21-12-16 15:42) @project(Cosmetics)
   [x] Make windows notifications configurable via setting @done(21-12-15 15:05) @project(New Features)
   [x] Add small caps to modal texts @done(21-12-15 14:34) @project(Cosmetics)

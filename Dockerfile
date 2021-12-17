@@ -1,4 +1,4 @@
-FROM node AS builder
+FROM node:17-alpine3.14 AS builder
 
 LABEL author "Phil Ashton"
 
@@ -12,7 +12,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM node AS production
+FROM node:17-alpine3.14 AS production
 COPY --from=builder /app/build .
 COPY --from=builder /app/package.json .
 EXPOSE 3000
