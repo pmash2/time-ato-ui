@@ -22,7 +22,8 @@
 		"start": "react-scripts --openssl-legacy-provider start",
 		"build": "react-scripts --openssl-legacy-provider build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"pretty": "prettier --write --print-width 100 --tab-width 4 --use-tabs true --no-semi ./src"
 	},
 	"eslintConfig": {
 		"extends": [
