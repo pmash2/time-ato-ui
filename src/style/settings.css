@@ -1,8 +1,8 @@
 .modal > div > input {
-  float: right;
+	float: right;
 }
 
 .setting {
-  display: flex;
-  justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }

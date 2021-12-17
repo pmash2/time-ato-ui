@@ -1,91 +1,91 @@
 :root {
-  --tDark-red: rgb(192, 25, 2);
-  --tBright-red: rgb(234, 38, 30);
-  --tLight-red: rgb(254, 116, 83);
-  --tYellow: rgb(254, 167, 4);
-  --tBright-green: rgb(191, 201, 141);
-  --tDark-green: rgb(81, 118, 17);
+	--tDark-red: rgb(192, 25, 2);
+	--tBright-red: rgb(234, 38, 30);
+	--tLight-red: rgb(254, 116, 83);
+	--tYellow: rgb(254, 167, 4);
+	--tBright-green: rgb(191, 201, 141);
+	--tDark-green: rgb(81, 118, 17);
 }
 
 .App {
-  text-align: center;
-  background-color: var(--tDark-green);
-  min-height: 100vh;
-  font-size: calc(10px + 2vmin);
-  color: var(--tYellow);
-  font-variant: small-caps;
+	text-align: center;
+	background-color: var(--tDark-green);
+	min-height: 100vh;
+	font-size: calc(10px + 2vmin);
+	color: var(--tYellow);
+	font-variant: small-caps;
 }
 
 .App-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 .modalMenu {
-  width: 33%;
-  align-self: flex-end;
-  display: flex;
-  justify-content: right;
+	width: 33%;
+	align-self: flex-end;
+	display: flex;
+	justify-content: right;
 }
 
 button {
-  background-color: var(--tDark-red);
-  border-radius: 2em;
-  padding: 0.5em 2em;
-  color: white;
-  font-size: medium;
+	background-color: var(--tDark-red);
+	border-radius: 2em;
+	padding: 0.5em 2em;
+	color: white;
+	font-size: medium;
 }
 
 input {
-  border-radius: 1em;
-  padding: 0.5em;
-  width: 1.5em;
-  height: 1em;
-  font-size: x-large;
-  color: var(--tDark-red);
-  font-weight: bolder;
-  background-color: gainsboro;
-  text-align: center;
-  border-width: 0.25em;
-  border-color: var(--tBright-red);
-  font-family: Arial, Helvetica, sans-serif;
+	border-radius: 1em;
+	padding: 0.5em;
+	width: 1.5em;
+	height: 1em;
+	font-size: x-large;
+	color: var(--tDark-red);
+	font-weight: bolder;
+	background-color: gainsboro;
+	text-align: center;
+	border-width: 0.25em;
+	border-color: var(--tBright-red);
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 p {
-  font-size: xx-large;
-  border-radius: 50%;
-  font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-large;
+	border-radius: 50%;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 div {
-  font-size: xx-large;
-  font-family: Arial, Helvetica, sans-serif;
+	font-size: xx-large;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 input[type="checkbox"] {
-  appearance: none;
-  background-color: gainsboro;
-  margin: 0.7em;
-  display: grid;
-  place-content: center;
+	appearance: none;
+	background-color: gainsboro;
+	margin: 0.7em;
+	display: grid;
+	place-content: center;
 }
 
 input[type="checkbox"]::before {
-  content: "";
-  width: 0.85em;
-  height: 0.85em;
-  transform: scale(0);
-  transition: 180ms transform ease-in-out;
+	content: "";
+	width: 0.85em;
+	height: 0.85em;
+	transform: scale(0);
+	transition: 180ms transform ease-in-out;
 }
 
 input[type="checkbox"]:checked::before {
-  transform: scale(1);
-  background-size: 100%;
-  background-image: url("../assets/tomato.svg");
+	transform: scale(1);
+	background-size: 100%;
+	background-image: url("../assets/tomato.svg");
 }

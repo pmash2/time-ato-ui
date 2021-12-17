@@ -1,77 +1,77 @@
 .modal {
-  display: grid;
-  font-variant: small-caps;
+	display: grid;
+	font-variant: small-caps;
 }
 
 .modalHeader {
-  text-align: center;
-  font-size: larger;
-  font-weight: bolder;
-  padding-top: 0.25em;
-  padding-bottom: 0.5em;
+	text-align: center;
+	font-size: larger;
+	font-weight: bolder;
+	padding-top: 0.25em;
+	padding-bottom: 0.5em;
 }
 
 .popup-content {
-  margin: auto;
-  background: var(--tLight-red);
-  width: 50%;
-  padding: 5px;
-  border-radius: 0.5em;
-  color: var(--tDark-green);
+	margin: auto;
+	background: var(--tLight-red);
+	width: 50%;
+	padding: 5px;
+	border-radius: 0.5em;
+	color: var(--tDark-green);
 }
 
 .popup-arrow {
-  color: var(--tDark-red);
+	color: var(--tDark-red);
 }
 
 [role="tooltip"].popup-content {
-  width: 200px;
-  background: var(--tBright-red);
-  font-size: medium;
-  color: var(--tYellow);
-  text-align: center;
+	width: 200px;
+	background: var(--tBright-red);
+	font-size: medium;
+	color: var(--tYellow);
+	text-align: center;
 }
 
 .popup-overlay {
-  background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.5);
 }
 
 [data-popup="tooltip"].popup-overlay {
-  background: transparent;
+	background: transparent;
 }
 
 .modal > .close {
-  cursor: pointer;
-  position: absolute;
-  display: block;
-  padding: 2px 5px 4px;
-  line-height: 20px;
-  right: -10px;
-  top: -10px;
-  font-size: 20px;
-  background: var(--tDark-red);
-  border-radius: 18px;
-  border: 1px solid #cfcece;
+	cursor: pointer;
+	position: absolute;
+	display: block;
+	padding: 2px 5px 4px;
+	line-height: 20px;
+	right: -10px;
+	top: -10px;
+	font-size: 20px;
+	background: var(--tDark-red);
+	border-radius: 18px;
+	border: 1px solid #cfcece;
 }
 
 /* animation */
 @keyframes modal {
-  0% {
-    transform: scale(1) translateY(0px);
-    opacity: 0;
-    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-  }
-  1% {
-    transform: scale(0.96) translateY(10px);
-    opacity: 0;
-    box-shadow: 0 0 0 rgba(241, 241, 241, 0);
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-    opacity: 1;
-    box-shadow: 0 0 500px rgba(241, 241, 241, 0);
-  }
+	0% {
+		transform: scale(1) translateY(0px);
+		opacity: 0;
+		box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+	}
+	1% {
+		transform: scale(0.96) translateY(10px);
+		opacity: 0;
+		box-shadow: 0 0 0 rgba(241, 241, 241, 0);
+	}
+	100% {
+		transform: scale(1) translateY(0px);
+		opacity: 1;
+		box-shadow: 0 0 500px rgba(241, 241, 241, 0);
+	}
 }
 .popup-content {
-  -webkit-animation: modal 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
+	-webkit-animation: modal 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
