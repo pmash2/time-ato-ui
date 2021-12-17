@@ -12,7 +12,10 @@ New Features:
     [ ] Themes/skins
 
 Bugs:
-    [ ] Changing the auto-loop setting does not immediate take effect - window must be reloaded (similar/releated to above)
+    [ ] Changing the auto-loop/notification setting does not immediate take effect - window must be reloaded
+        I'm thinking this has something to do with `main-layout` being a class instead of a function component,
+        so once it's instantiated, the constructor isn't called again, which is where the settings would be updated
+        Maybe changing `main-layout` to a function component fixes this
 
 Dev Niceties:
     [ ] Can the overall docker image size be reduced? It currently seems way too big
