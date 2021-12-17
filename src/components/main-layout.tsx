@@ -20,11 +20,11 @@ type MyState = {
 	pomoActive: boolean
 }
 
-const getPercentDone = (partial: pLib.Time, total: pLib.Time): number => {
-	let totalTime = pLib.TimeUtilities.TimeToMs(partial)
-	let remaining = pLib.TimeUtilities.TimeToMs(total)
+const getPercentofTotal = (partial: pLib.Time, total: pLib.Time): number => {
+	let msPartial = pLib.TimeUtilities.TimeToMs(partial)
+	let msTotal = pLib.TimeUtilities.TimeToMs(total)
 
-	return Math.round((remaining / totalTime) * 100)
+	return Math.round((msPartial / msTotal) * 100)
 }
 
 export class MainLayout extends Component<Props, MyState> {
@@ -74,7 +74,7 @@ export class MainLayout extends Component<Props, MyState> {
 
 	countDown = () => {
 		let shouldWarn =
-			getPercentDone(this.myPomo.Remaining, this.myPomo.OriginalTime) <
+			getPercentofTotal(this.myPomo.Remaining, this.myPomo.OriginalTime) <=
 			+this.state.settings.Inputs[2].value
 
 		this.setState({
