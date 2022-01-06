@@ -5,7 +5,7 @@ import { PomodoroInput } from "./pomodoro-input"
 import { PomoSettings } from "../settings-helpers"
 import { CreateNotification } from "../notifications"
 import { Logo } from "./logo"
-import { sendStateUpdate } from "../helpers/apiHelpers"
+import { sendStateUpdate, sendStatusUpdate } from "../helpers/apiHelpers"
 
 type PomodoroState = {
 	phase: string
@@ -51,6 +51,8 @@ export class MainLayout extends Component<Props, MyState> {
 			NewState: "Pending Start",
 		}
 		sendStateUpdate(statusChange)
+
+		setInterval(this.sendStatus, 5000)
 	}
 
 	handleTimer = (wrk: pLib.Timer, brk: pLib.Timer) => {
@@ -139,6 +141,17 @@ export class MainLayout extends Component<Props, MyState> {
 		if (this.state.settings.Checkboxes[1].checked) {
 			CreateNotification({ title: "Time-ato", body: msg })
 		}
+	}
+
+	sendStatus = () => {
+		const currentStatus = {
+			User: "pashton",
+			Date: new Date(),
+			State: this.state.pomoState.phase,
+			TimeRemaining: this.state.pomoState.timeRemaining,
+		}
+
+		sendStatusUpdate(currentStatus)
 	}
 
 	render() {
