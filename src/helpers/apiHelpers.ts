@@ -1,22 +1,22 @@
 // TODO: Consolidate these - new package?
-interface Status {
+interface PomoStateChange {
 	User: string
 	Date: Date
-	OldStatus: string
-	NewStatus: string
+	OldState: string
+	NewState: string
 }
 
-export const sendStatusUpdate = async (newStatus: Status): Promise<void> => {
+export const sendStateUpdate = async (stateUpdate: PomoStateChange): Promise<void> => {
 	const hdr = new Headers()
 	hdr.append("Content-Type", "application/json")
 
 	const rqstOpts: RequestInit = {
 		method: "POST",
 		headers: hdr,
-		body: JSON.stringify(newStatus),
+		body: JSON.stringify(stateUpdate),
 		redirect: "follow",
 	}
 
 	// TODO: Hard-coded URL...
-	fetch("http://127.0.0.1:2002/status", rqstOpts).catch((error) => console.log("error", error))
+	fetch("http://127.0.0.1:2002/state", rqstOpts).catch((error) => console.log("error", error))
 }
