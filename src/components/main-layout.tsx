@@ -51,8 +51,10 @@ export class MainLayout extends Component<Props, MyState> {
 			NewState: "Pending Start",
 		}
 		sendStateUpdate(statusChange)
+	}
 
-		setInterval(this.sendStatus, 5000)
+	componentDidMount() {
+		setInterval(this!.sendStatus, 5000)
 	}
 
 	handleTimer = (wrk: pLib.Timer, brk: pLib.Timer) => {
