@@ -89,3 +89,7 @@ input[type="checkbox"]:checked::before {
 	background-size: 100%;
 	background-image: url("../assets/tomato.svg");
 }
+
+#notifyBox {
+	font-size: medium;
+}

@@ -1,4 +1,5 @@
 import "../style/pomodoro.css"
+import { ServerTime } from "./server-time"
 
 type PomodoroState = {
 	phase: string
@@ -14,6 +15,9 @@ export const Pomodoro = ({ pomodoroState }: Props) => {
 
 	return (
 		<div>
+			<div>
+				<ServerTime />
+			</div>
 			<div>
 				Current State:{" "}
 				<div id="phase" className={pomodoroState.phase.toLowerCase()}>
