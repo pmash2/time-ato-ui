@@ -7,6 +7,8 @@ import { CreateNotification } from "../notifications"
 import { Logo } from "./logo"
 import { sendStateUpdate, sendStatusUpdate } from "../helpers/apiHelpers"
 import { StatusNotification } from "./status-notification"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 type PomodoroState = {
 	phase: string
@@ -144,6 +146,7 @@ export class MainLayout extends Component<Props, MyState> {
 		if (this.state.settings.Checkboxes[1].checked) {
 			CreateNotification({ title: "Time-ato", body: msg })
 		}
+		toast(msg)
 	}
 
 	sendStatus = () => {
@@ -166,6 +169,7 @@ export class MainLayout extends Component<Props, MyState> {
 				</div>
 				<Pomodoro pomodoroState={this.state.pomoState} />
 				<PomodoroInput onClick={this.handleTimer} pomoRunning={this.state.pomoActive} />
+				<ToastContainer />
 			</div>
 		)
 	}
