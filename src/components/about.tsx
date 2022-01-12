@@ -1,6 +1,5 @@
 import { useState } from "react"
 import Popup from "reactjs-popup"
-import "../style/about.css"
 import "../style/modal.css"
 const package_json = require("../../package.json")
 
@@ -24,18 +23,16 @@ const About = () => {
 					<button className="close" onClick={closeModal}>
 						&times;
 					</button>
-					<h1 className="centered">Special Thanks!</h1>
-					<p className="thanksList centered">
+					<h1 className="modalHeader">Special Thanks!</h1>
+					<div className="popup-content popup-centered">
 						Dave D.
 						<br />
 						Mike W.
-					</p>
-					<h4 className="centered">v{version}</h4>
-					<p className="centered">
+						<h4>v{version}</h4>
 						Tomato icon provided by AomAm
 						<br />
 						<cite>https://www.flaticon.com/authors/aomam</cite>
-					</p>
+					</div>
 				</div>
 			</Popup>
 		</div>
