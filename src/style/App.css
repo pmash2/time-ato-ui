@@ -93,3 +93,7 @@ input[type="checkbox"]:checked::before {
 #notifyBox {
 	font-size: medium;
 }
+
+#notifications {
+	display: inline-grid
+}

@@ -6,6 +6,7 @@ import { PomoSettings } from "../settings-helpers"
 import { CreateNotification } from "../notifications"
 import { Logo } from "./logo"
 import { sendStateUpdate, sendStatusUpdate } from "../helpers/apiHelpers"
+import { StatusNotification } from "./status-notification"
 
 type PomodoroState = {
 	phase: string
@@ -159,7 +160,10 @@ export class MainLayout extends Component<Props, MyState> {
 	render() {
 		return (
 			<div>
-				<Logo spinning={this.state.pomoActive} />
+				<div id="notifications">
+					<StatusNotification />
+					<Logo spinning={this.state.pomoActive} />
+				</div>
 				<Pomodoro pomodoroState={this.state.pomoState} />
 				<PomodoroInput onClick={this.handleTimer} pomoRunning={this.state.pomoActive} />
 			</div>
