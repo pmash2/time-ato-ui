@@ -6,6 +6,7 @@ interface PomoStateChange {
 	NewState: string
 }
 
+// TODO: Consolidate these - new package?
 interface Status {
 	User: string
 	Date: Date
