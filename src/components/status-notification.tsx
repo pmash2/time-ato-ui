@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from "react"
-import { TextNotificationBox } from "./textNotificationBox"
+import { TextNotificationBox } from "./text-notification-box"
 import { HubConnection } from "@microsoft/signalr"
 import { getHubConnection } from "../helpers/hubConnectionHelper"
 

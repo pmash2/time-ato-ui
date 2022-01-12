@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react"
 import { HubConnection } from "@microsoft/signalr"
-import { TextNotificationBox } from "./textNotificationBox"
+import { TextNotificationBox } from "./text-notification-box"
 import { getHubConnection } from "../helpers/hubConnectionHelper"
 
 export const ServerTime = (): ReactElement => {
