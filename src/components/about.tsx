@@ -3,9 +3,9 @@ import Popup from "reactjs-popup"
 import "../style/modal.css"
 const package_json = require("../../package.json")
 
-const About = () => {
+export const About = () => {
 	const [open, setOpen] = useState(false)
-	const closeModal = () => setOpen(false)
+	const closeModal = (): void => setOpen(false)
 	const openModal = (): void => setOpen(true)
 	const version = package_json.version
 
@@ -38,5 +38,3 @@ const About = () => {
 		</div>
 	)
 }
-
-export { About }
