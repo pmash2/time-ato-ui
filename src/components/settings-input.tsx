@@ -1,7 +1,7 @@
 import { PomoInputSetting } from "../settings-helpers"
 import Popup from "reactjs-popup"
 
-const SettingsInput = ({ text, id, value, tooltip }: PomoInputSetting) => {
+export const SettingsInput = ({ text, id, value, tooltip }: PomoInputSetting) => {
 	return (
 		<div className="setting">
 			<label>{text}</label>
@@ -15,5 +15,3 @@ const SettingsInput = ({ text, id, value, tooltip }: PomoInputSetting) => {
 		</div>
 	)
 }
-
-export { SettingsInput }

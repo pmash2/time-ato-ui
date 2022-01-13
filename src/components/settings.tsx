@@ -11,7 +11,7 @@ interface Props {
 	onSave: () => void
 }
 
-const Settings = ({ settings, onSave }: Props) => {
+export const Settings = ({ settings, onSave }: Props) => {
 	const [open, setOpen] = useState(false)
 	const closeModal = (): void => setOpen(false)
 	const openModal = (): void => setOpen(true)
@@ -46,5 +46,3 @@ const Settings = ({ settings, onSave }: Props) => {
 		</div>
 	)
 }
-
-export { Settings }

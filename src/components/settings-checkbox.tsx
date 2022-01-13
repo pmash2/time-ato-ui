@@ -1,6 +1,6 @@
 import { PomoCheckboxSetting } from "../settings-helpers"
 
-const SettingsCheckbox = ({ text, id, checked }: PomoCheckboxSetting) => {
+export const SettingsCheckbox = ({ text, id, checked }: PomoCheckboxSetting) => {
 	return (
 		<div className="setting">
 			<label>{text}</label>
@@ -8,5 +8,3 @@ const SettingsCheckbox = ({ text, id, checked }: PomoCheckboxSetting) => {
 		</div>
 	)
 }
-
-export { SettingsCheckbox }
