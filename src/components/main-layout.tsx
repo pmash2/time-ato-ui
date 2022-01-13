@@ -24,6 +24,7 @@ type MyState = {
 	pomoActive: boolean
 }
 
+//TODO: Replace with lib func when available
 const getPercentofTotal = (partial: pLib.Time, total: pLib.Time): number => {
 	let msPartial = pLib.TimeUtilities.TimeToMs(partial)
 	let msTotal = pLib.TimeUtilities.TimeToMs(total)
