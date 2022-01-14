@@ -24,13 +24,7 @@ type MyState = {
 	pomoActive: boolean
 }
 
-//TODO: Replace with lib func when available
-const getPercentofTotal = (partial: pLib.Time, total: pLib.Time): number => {
-	let msPartial = pLib.TimeUtilities.TimeToMs(partial)
-	let msTotal = pLib.TimeUtilities.TimeToMs(total)
-
-	return Math.round((msPartial / msTotal) * 100)
-}
+const pomoEvents = pLib.Enums.EmitString
 
 export class MainLayout extends Component<Props, MyState> {
 	private myPomo: pLib.Pomodoro
@@ -75,7 +69,7 @@ export class MainLayout extends Component<Props, MyState> {
 			}
 			sendStateUpdate(statusChange)
 
-			this.myPomo.on(pLib.EmitString.PomodoroComplete, () => {
+			this.myPomo.on(pomoEvents.PomodoroComplete, () => {
 				this.notify("Pomodoro completed!")
 				// TODO: Use enum when available for status
 				const statusChange = {
@@ -87,7 +81,7 @@ export class MainLayout extends Component<Props, MyState> {
 				sendStateUpdate(statusChange)
 			})
 
-			this.myPomo.on(pLib.EmitString.BreakComplete, () => {
+			this.myPomo.on(pomoEvents.BreakComplete, () => {
 				this.setState({ ...this.state, pomoActive: false })
 
 				this.notify("Break completed! Get back to work!")
@@ -129,9 +123,7 @@ export class MainLayout extends Component<Props, MyState> {
 	}
 
 	countDown = () => {
-		let shouldWarn =
-			getPercentofTotal(this.myPomo.Remaining, this.myPomo.OriginalTime) <=
-			+this.state.settings.Inputs[2].value
+		let shouldWarn = this.myPomo.PercentRemaining <= +this.state.settings.Inputs[2].value
 
 		this.setState({
 			...this.state,
