@@ -55,23 +55,8 @@ export class MainLayout extends Component<Props, MyState> {
 			this.myPomo = pLib.getPomodoro(wrk, brk)
 			this.changePomoState(pomoStates.Pomodoro)
 
-			this.myPomo.on(pomoEvents.PomodoroComplete, () => {
-				this.notify("Pomodoro completed!")
-				this.changePomoState(pomoStates.Break)
-			})
-
-			this.myPomo.on(pomoEvents.BreakComplete, () => {
-				this.setState({ ...this.state, pomoActive: false })
-
-				this.notify("Break completed! Get back to work!")
-				this.changePomoState(pomoStates.Completed)
-
-				if (this.state.settings.Checkboxes[0].checked) {
-					this.myPomo.restart()
-					this.setState({ ...this.state, pomoActive: true })
-					this.changePomoState(pomoStates.Pomodoro)
-				}
-			})
+			this.myPomo.on(pomoEvents.PomodoroComplete, this.handlePomoComplete)
+			this.myPomo.on(pomoEvents.BreakComplete, this.handleBreakComplete)
 
 			this.myPomo.start()
 			setInterval(this.countDown, 50)
@@ -118,10 +103,28 @@ export class MainLayout extends Component<Props, MyState> {
 			User: "pashton",
 			Date: new Date(),
 			OldState: this.state.pomoState.phase,
-			NewState: newState
+			NewState: newState,
 		}
 
 		sendStateUpdate(statusChange)
+	}
+
+	handlePomoComplete = () => {
+		this.notify("Pomodoro completed!")
+		this.changePomoState(pomoStates.Break)
+	}
+
+	handleBreakComplete = () => {
+		this.setState({ ...this.state, pomoActive: false })
+
+		this.notify("Break completed! Get back to work!")
+		this.changePomoState(pomoStates.Completed)
+
+		if (this.state.settings.Checkboxes[0].checked) {
+			this.myPomo.restart()
+			this.setState({ ...this.state, pomoActive: true })
+			this.changePomoState(pomoStates.Pomodoro)
+		}
 	}
 
 	render() {
