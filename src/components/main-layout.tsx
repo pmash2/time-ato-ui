@@ -42,14 +42,7 @@ export class MainLayout extends Component<Props, MyState> {
 			settings: settings,
 			pomoActive: false,
 		}
-
-		const statusChange = {
-			User: "pashton",
-			Date: new Date(),
-			OldState: "",
-			NewState: pomoStates.PendingStart,
-		}
-		sendStateUpdate(statusChange)
+		this.changePomoState(pomoStates.PendingStart)
 	}
 
 	componentDidMount() {
@@ -60,47 +53,23 @@ export class MainLayout extends Component<Props, MyState> {
 		if (!this.state.pomoActive) {
 			this.setState({ ...this.state, pomoActive: true })
 			this.myPomo = pLib.getPomodoro(wrk, brk)
-
-			const statusChange = {
-				User: "pashton",
-				Date: new Date(),
-				OldState: pomoStates.PendingStart,
-				NewState: pomoStates.Pomodoro,
-			}
-			sendStateUpdate(statusChange)
+			this.changePomoState(pomoStates.Pomodoro)
 
 			this.myPomo.on(pomoEvents.PomodoroComplete, () => {
 				this.notify("Pomodoro completed!")
-
-				const statusChange = {
-					User: "pashton",
-					Date: new Date(),
-					OldState: pomoStates.Pomodoro,
-					NewState: pomoStates.Break,
-				}
-				sendStateUpdate(statusChange)
+				this.changePomoState(pomoStates.Break)
 			})
 
 			this.myPomo.on(pomoEvents.BreakComplete, () => {
 				this.setState({ ...this.state, pomoActive: false })
 
 				this.notify("Break completed! Get back to work!")
-
-				let statusChange = {
-					User: "pashton",
-					Date: new Date(),
-					OldState: pomoStates.Break,
-					NewState: pomoStates.Completed,
-				}
-				sendStateUpdate(statusChange)
+				this.changePomoState(pomoStates.Completed)
 
 				if (this.state.settings.Checkboxes[0].checked) {
 					this.myPomo.restart()
 					this.setState({ ...this.state, pomoActive: true })
-
-					statusChange.OldState = pomoStates.Completed
-					statusChange.NewState = pomoStates.Pomodoro
-					sendStateUpdate(statusChange)
+					this.changePomoState(pomoStates.Pomodoro)
 				}
 			})
 
@@ -109,14 +78,7 @@ export class MainLayout extends Component<Props, MyState> {
 		} else {
 			this.myPomo.stop()
 			this.setState({ ...this.setState, pomoActive: false })
-
-			const statusChange = {
-				User: "pashton",
-				Date: new Date(),
-				OldState: pomoStates.Pomodoro,
-				NewState: pomoStates.Cancelled,
-			}
-			sendStateUpdate(statusChange)
+			this.changePomoState(pomoStates.Cancelled)
 		}
 	}
 
@@ -149,6 +111,17 @@ export class MainLayout extends Component<Props, MyState> {
 		}
 
 		sendStatusUpdate(currentStatus)
+	}
+
+	changePomoState = (newState: pLib.Enums.PomodoroState): void => {
+		const statusChange = {
+			User: "pashton",
+			Date: new Date(),
+			OldState: this.state.pomoState.phase,
+			NewState: newState
+		}
+
+		sendStateUpdate(statusChange)
 	}
 
 	render() {
