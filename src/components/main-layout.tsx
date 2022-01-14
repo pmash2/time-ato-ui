@@ -8,7 +8,8 @@ import { Logo } from "./logo"
 import { sendStateUpdate, sendStatusUpdate } from "../helpers/apiHelpers"
 import { StatusNotification } from "./status-notification"
 import { ToastContainer, toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css" // Default styling
+import "../style/in-app-toast.css"  // Time-ato specific overrides
 
 type PomodoroInfo = {
 	phase: string
