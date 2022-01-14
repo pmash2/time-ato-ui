@@ -1,17 +1,15 @@
-import { HttpTransportType, HubConnectionBuilder } from "@microsoft/signalr"
+import { HttpTransportType, HubConnection, HubConnectionBuilder } from "@microsoft/signalr"
 import { getConfig } from "../helpers/app-config-helper"
 
-export const getHubConnection = (hubName: string) => {
+export const getHubConnection = (hubName: string): HubConnection | null => {
 	const _configs = getConfig()
+	const notificationHubUrl = `${_configs.NotificationsUrl}/hubs/${hubName}`
 
-	return (
-		new HubConnectionBuilder()
-			//TODO: better handle url
-			.withUrl(`${_configs.NotificationsUrl}/hubs/${hubName}`, {
-				skipNegotiation: true,
-				transport: HttpTransportType.WebSockets,
-			})
-			.withAutomaticReconnect()
-			.build()
-	)
+	return new HubConnectionBuilder()
+		.withUrl(notificationHubUrl, {
+			skipNegotiation: true,
+			transport: HttpTransportType.WebSockets,
+		})
+		.withAutomaticReconnect()
+		.build()
 }
