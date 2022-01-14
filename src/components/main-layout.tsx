@@ -25,6 +25,7 @@ type MyState = {
 }
 
 const pomoEvents = pLib.Enums.EmitString
+const pomoStates = pLib.Enums.PomodoroState
 
 export class MainLayout extends Component<Props, MyState> {
 	private myPomo: pLib.Pomodoro
@@ -41,12 +42,12 @@ export class MainLayout extends Component<Props, MyState> {
 			settings: settings,
 			pomoActive: false,
 		}
-		// TODO: Use enum when available for status
+
 		const statusChange = {
 			User: "pashton",
 			Date: new Date(),
 			OldState: "",
-			NewState: "Pending Start",
+			NewState: pomoStates.PendingStart,
 		}
 		sendStateUpdate(statusChange)
 	}
@@ -60,23 +61,22 @@ export class MainLayout extends Component<Props, MyState> {
 			this.setState({ ...this.state, pomoActive: true })
 			this.myPomo = pLib.getPomodoro(wrk, brk)
 
-			// TODO: Use enum when available for status
 			const statusChange = {
 				User: "pashton",
 				Date: new Date(),
-				OldState: "Pending Start",
-				NewState: "Pomodoro",
+				OldState: pomoStates.PendingStart,
+				NewState: pomoStates.Pomodoro,
 			}
 			sendStateUpdate(statusChange)
 
 			this.myPomo.on(pomoEvents.PomodoroComplete, () => {
 				this.notify("Pomodoro completed!")
-				// TODO: Use enum when available for status
+
 				const statusChange = {
 					User: "pashton",
 					Date: new Date(),
-					OldState: "Pomodoro",
-					NewState: "Break",
+					OldState: pomoStates.Pomodoro,
+					NewState: pomoStates.Break,
 				}
 				sendStateUpdate(statusChange)
 			})
@@ -86,12 +86,11 @@ export class MainLayout extends Component<Props, MyState> {
 
 				this.notify("Break completed! Get back to work!")
 
-				// TODO: Use enum when available for status
 				let statusChange = {
 					User: "pashton",
 					Date: new Date(),
-					OldState: "Break",
-					NewState: "Completed",
+					OldState: pomoStates.Break,
+					NewState: pomoStates.Completed,
 				}
 				sendStateUpdate(statusChange)
 
@@ -99,9 +98,8 @@ export class MainLayout extends Component<Props, MyState> {
 					this.myPomo.restart()
 					this.setState({ ...this.state, pomoActive: true })
 
-					// TODO: Use enum when available for status
-					statusChange.OldState = "Completed"
-					statusChange.NewState = "Pomodoro"
+					statusChange.OldState = pomoStates.Completed
+					statusChange.NewState = pomoStates.Pomodoro
 					sendStateUpdate(statusChange)
 				}
 			})
@@ -111,12 +109,12 @@ export class MainLayout extends Component<Props, MyState> {
 		} else {
 			this.myPomo.stop()
 			this.setState({ ...this.setState, pomoActive: false })
-			// TODO: Use enum when available for status
+
 			const statusChange = {
 				User: "pashton",
 				Date: new Date(),
-				OldState: "Pomodoro",
-				NewState: "Cancelled",
+				OldState: pomoStates.Pomodoro,
+				NewState: pomoStates.Cancelled,
 			}
 			sendStateUpdate(statusChange)
 		}
