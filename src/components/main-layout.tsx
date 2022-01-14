@@ -10,7 +10,7 @@ import { StatusNotification } from "./status-notification"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-type PomodoroState = {
+type PomodoroInfo = {
 	phase: string
 	timeRemaining: string
 	warn: boolean
@@ -19,7 +19,7 @@ type Props = {
 	settings: PomoSettings
 }
 type MyState = {
-	pomoState: PomodoroState
+	pomoState: PomodoroInfo
 	settings: PomoSettings
 	pomoActive: boolean
 }
