@@ -10,10 +10,14 @@ interface PomoStateChange {
 	NewState: string
 }
 
+interface Props {
+	onFailedConnection: () => void
+}
+
 const pomoStateToString = (st: PomoStateChange): string =>
 	`Last update (${st.Date}): ${st.User} completed ${st.OldState}, now doing ${st.NewState}`
 
-export const StatusNotification = (): ReactElement => {
+export const StatusNotification = ({ onFailedConnection }: Props): ReactElement => {
 	const [connection, setConnection] = useState<null | HubConnection>(null)
 	const [notification, setNotification] = useState("")
 
@@ -34,7 +38,8 @@ export const StatusNotification = (): ReactElement => {
 					})
 				})
 				.catch((error) => {
-					setNotification("Error connecting to server")
+					setNotification("")
+					onFailedConnection()
 					console.log(`Error: ${error}`)
 				})
 		}

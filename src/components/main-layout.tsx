@@ -132,7 +132,9 @@ export class MainLayout extends Component<Props, MyState> {
 		return (
 			<div>
 				<div id="notifications">
-					<StatusNotification />
+					<StatusNotification
+						onFailedConnection={() => toast.error("Error connecting to API")}
+					/>
 					<Logo spinning={this.state.pomoActive} />
 				</div>
 				<Pomodoro pomodoroState={this.state.pomoState} />

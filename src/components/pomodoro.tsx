@@ -1,5 +1,8 @@
 import "../style/pomodoro.css"
 import { ServerTime } from "./server-time"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css" // Default styling
+import "../style/in-app-toast.css" // Time-ato specific overrides
 
 type PomodoroState = {
 	phase: string
@@ -16,7 +19,10 @@ export const Pomodoro = ({ pomodoroState }: Props) => {
 	return (
 		<div>
 			<div>
-				<ServerTime />
+				<ToastContainer />
+				<ServerTime
+					onFailedConnection={() => toast.error("Error syncing time with server")}
+				/>
 			</div>
 			<div>
 				Current State:{" "}

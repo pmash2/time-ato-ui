@@ -3,7 +3,11 @@ import { HubConnection } from "@microsoft/signalr"
 import { TextNotificationBox } from "./text-notification-box"
 import { getHubConnection } from "../helpers/hubConnectionHelper"
 
-export const ServerTime = (): ReactElement => {
+interface Props {
+	onFailedConnection: () => void
+}
+
+export const ServerTime = ({ onFailedConnection }: Props): ReactElement => {
 	const [connection, setConnection] = useState<null | HubConnection>(null)
 	const [statusMsg, setStatusMsg] = useState("Not connected to server")
 
@@ -24,7 +28,8 @@ export const ServerTime = (): ReactElement => {
 					})
 				})
 				.catch((error) => {
-					setStatusMsg("Error connecting to server")
+					setStatusMsg("")
+					onFailedConnection()
 					console.log(`Error: ${error}`)
 				})
 		}
@@ -32,7 +37,7 @@ export const ServerTime = (): ReactElement => {
 
 	return (
 		<div>
-			<TextNotificationBox text={`Current Time: ${statusMsg}`} />
+			<TextNotificationBox text={statusMsg} />
 		</div>
 	)
 }
