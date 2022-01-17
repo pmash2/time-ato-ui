@@ -21,7 +21,9 @@ export const Pomodoro = ({ pomodoroState }: Props) => {
 			<div>
 				<ToastContainer />
 				<ServerTime
-					onFailedConnection={() => toast.error("Error syncing time with server")}
+					onFailedConnection={() =>
+						toast.error("Error syncing time with server", { autoClose: 2000 })
+					}
 				/>
 			</div>
 			<div>

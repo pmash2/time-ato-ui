@@ -1,5 +1,5 @@
 :root {
-	--toastify-color-light: var(--tLight-red);
+	--toastify-color-light: var(--tBright-green);
 	--toastify-color-dark: #121212;
 	--toastify-color-info: #3498db;
 	--toastify-color-success: #07bc0c;
