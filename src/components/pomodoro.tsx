@@ -3,9 +3,10 @@ import { ServerTime } from "./server-time"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css" // Default styling
 import "../style/in-app-toast.css" // Time-ato specific overrides
+import { Enums } from "@pmash2/pomo-timer-lib"
 
 type PomodoroState = {
-	phase: string
+	phase: Enums.PomodoroState
 	timeRemaining: string
 	warn: boolean
 }
@@ -15,6 +16,7 @@ type Props = {
 
 export const Pomodoro = ({ pomodoroState }: Props) => {
 	const shouldWarn = pomodoroState.warn ? "warn" : ""
+	const currPhase = pomodoroState.phase?.toLowerCase()
 
 	return (
 		<div>
@@ -28,7 +30,7 @@ export const Pomodoro = ({ pomodoroState }: Props) => {
 			</div>
 			<div>
 				Current State:{" "}
-				<div id="phase" className={pomodoroState.phase.toLowerCase()}>
+				<div id="phase" className={currPhase}>
 					{pomodoroState.phase}
 				</div>
 			</div>
