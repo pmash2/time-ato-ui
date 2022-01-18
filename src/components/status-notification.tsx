@@ -43,7 +43,7 @@ export const StatusNotification = ({ onFailedConnection }: Props): ReactElement 
 					console.log(`Error: ${error}`)
 				})
 		}
-	}, [connection])
+	}, [connection, onFailedConnection])
 
 	return <TextNotificationBox text={notification} />
 }

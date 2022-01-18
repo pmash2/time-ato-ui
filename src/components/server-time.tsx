@@ -33,7 +33,7 @@ export const ServerTime = ({ onFailedConnection }: Props): ReactElement => {
 					console.log(`Error: ${error}`)
 				})
 		}
-	}, [connection])
+	}, [connection, onFailedConnection])
 
 	return (
 		<div>
