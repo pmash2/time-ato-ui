@@ -25,7 +25,7 @@ const notify = (msg: string, sendWindowsNotification: boolean): void => {
 	toast(msg)
 }
 
-const sendStatus = (phase: pLib.Enums.PomodoroState, timeRemaining: string) => {
+const sendStatusUpdateToServer = (phase: pLib.Enums.PomodoroState, timeRemaining: string) => {
 	const currentStatus = {
 		User: "pashton",
 		Date: new Date(),
@@ -71,7 +71,11 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 
 	useEffect(() => {
 		setInterval(
-			() => sendStatus(currentPomo.CurrentState, currentPomo.Remaining.ToString()),
+			() =>
+				sendStatusUpdateToServer(
+					currentPomo.CurrentState,
+					currentPomo.Remaining.ToString()
+				),
 			5000
 		)
 	})
