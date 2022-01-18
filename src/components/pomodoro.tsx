@@ -5,19 +5,14 @@ import "react-toastify/dist/ReactToastify.css" // Default styling
 import "../style/in-app-toast.css" // Time-ato specific overrides
 import { Enums } from "@pmash2/pomo-timer-lib"
 
-type PomodoroState = {
-	phase: Enums.PomodoroState
-	timeRemaining: string
-	warn: boolean
-}
 type Props = {
-	pomodoroState: PomodoroState
+	currentPhase: Enums.PomodoroState
+	timeRemaining: string
+	shouldWarn: boolean
 }
 
-export const Pomodoro = ({ pomodoroState }: Props) => {
-	const shouldWarn = pomodoroState.warn ? "warn" : ""
-	const currPhase = pomodoroState.phase?.toLowerCase()
-
+export const PomodoroStatus = ({ currentPhase, timeRemaining, shouldWarn }: Props) => {
+	const warnClass = shouldWarn ? "warn" : ""
 	return (
 		<div>
 			<div>
@@ -30,14 +25,14 @@ export const Pomodoro = ({ pomodoroState }: Props) => {
 			</div>
 			<div>
 				Current State:{" "}
-				<div id="phase" className={currPhase}>
-					{pomodoroState.phase}
+				<div id="phase" className={currentPhase.toLowerCase()}>
+					{currentPhase}
 				</div>
 			</div>
 			<div>
 				Time Remaining:{" "}
-				<div id="remaining" className={shouldWarn}>
-					{pomodoroState.timeRemaining}
+				<div id="remaining" className={warnClass}>
+					{timeRemaining}
 				</div>
 			</div>
 		</div>

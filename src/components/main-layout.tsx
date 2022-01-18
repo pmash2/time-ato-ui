@@ -1,27 +1,18 @@
-import React, { Component } from "react"
+import React, { ReactElement, useEffect, useState } from "react"
 import * as pLib from "@pmash2/pomo-timer-lib"
-import { Pomodoro } from "./pomodoro"
+import { PomodoroStatus } from "./pomodoro"
 import { PomodoroInput } from "./pomodoro-input"
 import { PomoSettings } from "../settings-helpers"
-import { CreateNotification } from "./windows-notifications"
+import { CreateNotification } from "../helpers/windows-notifications"
 import { Logo } from "./logo"
 import { sendStateUpdate, sendStatusUpdate } from "../helpers/apiHelpers"
 import { StatusNotification } from "./status-notification"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css" // Default styling
-import "../style/in-app-toast.css"  // Time-ato specific overrides
+import "../style/in-app-toast.css" // Time-ato specific overrides
 
-type PomodoroInfo = {
-	phase: pLib.Enums.PomodoroState
-	timeRemaining: string
-	warn: boolean
-}
 type Props = {
 	settings: PomoSettings
-}
-type MyState = {
-	pomoState: PomodoroInfo
-	pomoActive: boolean
 }
 
 const pomoEvents = pLib.Enums.EmitString
@@ -59,100 +50,88 @@ const changePomoState = (
 	sendStateUpdate(statusChange)
 }
 
-export class MainLayout extends Component<Props, MyState> {
-	private myPomo: pLib.Pomodoro
-	private sendWindowsNotification: boolean
-	private loopPomodoros: boolean
-	private warningThreshold: number
+let currentPomo: pLib.Pomodoro = pLib.getPomodoro(
+	pLib.getTimer(0, 0, 0, 0),
+	pLib.getTimer(0, 0, 0, 0)
+)
+let pomoActive: boolean = false
 
-	constructor({ settings }: Props) {
-		super({ settings })
-		this.myPomo = pLib.getPomodoro(pLib.getTimer(0, 0, 0, 0), pLib.getTimer(0, 0, 0, 0))
-		this.state = {
-			pomoState: {
-				phase: pomoStates.PendingStart,
-				timeRemaining: "0:00",
-				warn: false,
-			},
-			pomoActive: false,
-		}
-		changePomoState(pomoStates.PendingStart, pomoStates.PendingStart)
-		this.sendWindowsNotification = settings.Checkboxes[1].checked
-		this.loopPomodoros = settings.Checkboxes[0].checked
-		this.warningThreshold = +settings.Inputs[2].value
-	}
+export const MainLayout = ({ settings }: Props): ReactElement => {
+	const [timeRemaining, setTimeRemaining] = useState("0:00")
+	const sendWindowsNotification: boolean = settings.Checkboxes[1].checked
+	const loopPomodoros: boolean = settings.Checkboxes[0].checked
+	const warningThreshold: number = +settings.Inputs[2].value
+	let shouldWarn: boolean = false
 
-	useEffect() {
+	useEffect(() => {
 		setInterval(
-			() => sendStatus(this.state.pomoState.phase, this.state.pomoState.timeRemaining),
+			() => sendStatus(currentPomo.CurrentState, currentPomo.Remaining.ToString()),
 			5000
 		)
-	}
+	})
 
-	handleTimer = (wrk: pLib.Timer, brk: pLib.Timer) => {
-		if (!this.state.pomoActive) {
-			this.setState({ ...this.state, pomoActive: true })
-			this.myPomo = pLib.getPomodoro(wrk, brk)
-			changePomoState(pomoStates.Pomodoro, this.state.pomoState.phase)
+	const handleTimer = (wrk: pLib.Timer, brk: pLib.Timer) => {
+		if (!pomoActive) {
+			pomoActive = true
+			currentPomo = pLib.getPomodoro(wrk, brk)
 
-			this.myPomo.on(pomoEvents.PomodoroComplete, this.handlePomoComplete)
-			this.myPomo.on(pomoEvents.BreakComplete, this.handleBreakComplete)
+			changePomoState(pomoStates.Pomodoro, currentPomo.CurrentState)
 
-			this.myPomo.start()
-			setInterval(this.countDown, 50)
+			currentPomo.on(pomoEvents.PomodoroComplete, handlePomoComplete)
+			currentPomo.on(pomoEvents.BreakComplete, handleBreakComplete)
+
+			currentPomo.start()
+			setInterval(countDown, 500)
 		} else {
-			this.myPomo.stop()
-			this.setState({ ...this.setState, pomoActive: false })
-			changePomoState(pomoStates.Cancelled, this.state.pomoState.phase)
+			currentPomo.stop()
+			pomoActive = false
+			changePomoState(pomoStates.Cancelled, currentPomo.CurrentState)
 		}
 	}
 
-	countDown = () => {
-		let shouldWarn = this.myPomo.PercentRemaining <= this.warningThreshold
-
-		this.setState({
-			...this.state,
-			pomoState: {
-				phase: this.myPomo.CurrentState,
-				timeRemaining: this.myPomo.Remaining.ToString(false),
-				warn: shouldWarn,
-			},
-		})
+	const handlePomoComplete = (
+		sendWindowsNotification: boolean,
+		oldState: pLib.Enums.PomodoroState
+	) => {
+		notify("Pomodoro completed!", sendWindowsNotification)
+		changePomoState(pomoStates.Break, oldState)
 	}
 
-	handlePomoComplete = () => {
-		notify("Pomodoro completed!", this.sendWindowsNotification)
-		changePomoState(pomoStates.Break, this.state.pomoState.phase)
-	}
+	const handleBreakComplete = () => {
+		pomoActive = false
 
-	handleBreakComplete = () => {
-		this.setState({ ...this.state, pomoActive: false })
+		notify("Break completed! Get back to work!", sendWindowsNotification)
+		changePomoState(pomoStates.Completed, currentPomo.CurrentState)
 
-		notify("Break completed! Get back to work!", this.sendWindowsNotification)
-		changePomoState(pomoStates.Completed, this.state.pomoState.phase)
-
-		if (this.loopPomodoros) {
-			this.myPomo.restart()
-			this.setState({ ...this.state, pomoActive: true })
-			changePomoState(pomoStates.Pomodoro, this.state.pomoState.phase)
+		if (loopPomodoros) {
+			currentPomo.restart()
+			pomoActive = true
+			changePomoState(pomoStates.Pomodoro, currentPomo.CurrentState)
 		}
 	}
 
-	render() {
-		return (
-			<div>
-				<div id="notifications">
-					<StatusNotification
-						onFailedConnection={() =>
-							toast.error("Error connecting to API", { autoClose: 2000 })
-						}
-					/>
-					<Logo spinning={this.state.pomoActive} />
-				</div>
-				<Pomodoro pomodoroState={this.state.pomoState} />
-				<PomodoroInput onClick={this.handleTimer} pomoRunning={this.state.pomoActive} />
-				<ToastContainer />
+	const countDown = () => {
+		shouldWarn = currentPomo.PercentRemaining <= warningThreshold
+		setTimeRemaining(currentPomo.Remaining.ToString())
+	}
+
+	return (
+		<div>
+			<div id="notifications">
+				<StatusNotification
+					onFailedConnection={() =>
+						toast.error("Error connecting to API", { autoClose: 2000 })
+					}
+				/>
+				<Logo spinning={pomoActive} />
 			</div>
-		)
-	}
+			<PomodoroStatus
+				currentPhase={currentPomo.CurrentState}
+				timeRemaining={timeRemaining}
+				shouldWarn={shouldWarn}
+			/>
+			<PomodoroInput onClick={handleTimer} pomoRunning={pomoActive} />
+			<ToastContainer />
+		</div>
+	)
 }
