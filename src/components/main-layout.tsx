@@ -36,7 +36,7 @@ const sendStatus = (phase: pLib.Enums.PomodoroState, timeRemaining: string) => {
 	sendStatusUpdate(currentStatus)
 }
 
-const changePomoState = (
+const sendStateUpdateToServer = (
 	newState: pLib.Enums.PomodoroState,
 	oldState: pLib.Enums.PomodoroState
 ): void => {
@@ -75,7 +75,7 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 			pomoActive = true
 			currentPomo = pLib.getPomodoro(wrk, brk)
 
-			changePomoState(pomoStates.Pomodoro, currentPomo.CurrentState)
+			sendStateUpdateToServer(pomoStates.Pomodoro, currentPomo.CurrentState)
 
 			currentPomo.on(pomoEvents.PomodoroComplete, handlePomoComplete)
 			currentPomo.on(pomoEvents.BreakComplete, handleBreakComplete)
@@ -85,7 +85,7 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 		} else {
 			currentPomo.stop()
 			pomoActive = false
-			changePomoState(pomoStates.Cancelled, currentPomo.CurrentState)
+			sendStateUpdateToServer(pomoStates.Cancelled, currentPomo.CurrentState)
 		}
 	}
 
@@ -94,19 +94,19 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 		oldState: pLib.Enums.PomodoroState
 	) => {
 		notify("Pomodoro completed!", sendWindowsNotification)
-		changePomoState(pomoStates.Break, oldState)
+		sendStateUpdateToServer(pomoStates.Break, oldState)
 	}
 
 	const handleBreakComplete = () => {
 		pomoActive = false
 
 		notify("Break completed! Get back to work!", sendWindowsNotification)
-		changePomoState(pomoStates.Completed, currentPomo.CurrentState)
+		sendStateUpdateToServer(pomoStates.Completed, currentPomo.CurrentState)
 
 		if (loopPomodoros) {
 			currentPomo.restart()
 			pomoActive = true
-			changePomoState(pomoStates.Pomodoro, currentPomo.CurrentState)
+			sendStateUpdateToServer(pomoStates.Pomodoro, currentPomo.CurrentState)
 		}
 	}
 
