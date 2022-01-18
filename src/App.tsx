@@ -6,6 +6,8 @@ import { Settings } from "./components/settings"
 import { LoadSettings, SaveSettings, PomoSettings } from "./helpers/settings-helpers"
 import { RequestPermission } from "./helpers/windows-notifications"
 import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css" // Default styling
+import "./style/in-app-toast.css" // Time-ato specific overrides
 
 function App() {
 	const [settings, changeSettings] = useState(LoadSettings())

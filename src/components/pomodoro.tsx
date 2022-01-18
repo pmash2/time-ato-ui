@@ -1,8 +1,6 @@
 import "../style/pomodoro.css"
 import { ServerTime } from "./server-time"
 import { toast } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css" // Default styling
-import "../style/in-app-toast.css" // Time-ato specific overrides
 import { Enums } from "@pmash2/pomo-timer-lib"
 
 type Props = {
