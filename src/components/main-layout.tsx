@@ -59,7 +59,7 @@ let pomoActive: boolean = false
 export const MainLayout = ({ settings }: Props): ReactElement => {
 	const initState = {
 		timeRemaining: "00:00",
-		PomodoroPhase: pLib.Enums.PomodoroState.PendingStart,
+		PomodoroPhase: pomoStates.PendingStart,
 	}
 
 	const [currentState, setCurrentState] = useState(initState)
