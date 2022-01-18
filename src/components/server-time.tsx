@@ -9,7 +9,7 @@ interface Props {
 
 export const ServerTime = ({ onFailedConnection }: Props): ReactElement => {
 	const [connection, setConnection] = useState<null | HubConnection>(null)
-	const [statusMsg, setStatusMsg] = useState("Not connected to server")
+	const [statusMsg, setStatusMsg] = useState("")
 
 	useEffect(() => {
 		const connect = getHubConnection("serverTime")
