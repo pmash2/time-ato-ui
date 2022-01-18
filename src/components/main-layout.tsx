@@ -57,7 +57,13 @@ let currentPomo: pLib.Pomodoro = pLib.getPomodoro(
 let pomoActive: boolean = false
 
 export const MainLayout = ({ settings }: Props): ReactElement => {
-	const [timeRemaining, setTimeRemaining] = useState("0:00")
+	const initState = {
+		timeRemaining: "00:00",
+		PomodoroPhase: pLib.Enums.PomodoroState.PendingStart,
+	}
+
+	const [currentState, setCurrentState] = useState(initState)
+
 	const sendWindowsNotification: boolean = settings.Checkboxes[1].checked
 	const loopPomodoros: boolean = settings.Checkboxes[0].checked
 	const warningThreshold: number = +settings.Inputs[2].value
@@ -70,49 +76,50 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 		)
 	})
 
+	const pomodoroPhaseChange = (newPhase: pLib.Enums.PomodoroState) => {
+		sendStateUpdateToServer(newPhase, currentState.PomodoroPhase)
+		setCurrentState({ ...currentState, PomodoroPhase: newPhase })
+	}
+
 	const handleTimer = (wrk: pLib.Timer, brk: pLib.Timer) => {
 		if (!pomoActive) {
 			pomoActive = true
 			currentPomo = pLib.getPomodoro(wrk, brk)
-
-			sendStateUpdateToServer(pomoStates.Pomodoro, currentPomo.CurrentState)
-
 			currentPomo.on(pomoEvents.PomodoroComplete, handlePomoComplete)
 			currentPomo.on(pomoEvents.BreakComplete, handleBreakComplete)
-
 			currentPomo.start()
+
+			pomodoroPhaseChange(pomoStates.Pomodoro)
 			setInterval(countDown, 500)
 		} else {
 			currentPomo.stop()
 			pomoActive = false
-			sendStateUpdateToServer(pomoStates.Cancelled, currentPomo.CurrentState)
+			pomodoroPhaseChange(pomoStates.Cancelled)
 		}
 	}
 
-	const handlePomoComplete = (
-		sendWindowsNotification: boolean,
-		oldState: pLib.Enums.PomodoroState
-	) => {
+	const handlePomoComplete = () => {
 		notify("Pomodoro completed!", sendWindowsNotification)
-		sendStateUpdateToServer(pomoStates.Break, oldState)
+		pomodoroPhaseChange(pomoStates.Break)
 	}
 
 	const handleBreakComplete = () => {
 		pomoActive = false
 
 		notify("Break completed! Get back to work!", sendWindowsNotification)
-		sendStateUpdateToServer(pomoStates.Completed, currentPomo.CurrentState)
+		pomodoroPhaseChange(pomoStates.Completed)
 
 		if (loopPomodoros) {
 			currentPomo.restart()
 			pomoActive = true
-			sendStateUpdateToServer(pomoStates.Pomodoro, currentPomo.CurrentState)
+			pomodoroPhaseChange(pomoStates.Pomodoro)
 		}
 	}
 
 	const countDown = () => {
+		console.log(`Current State: ${currentPomo.CurrentState}`)
 		shouldWarn = currentPomo.PercentRemaining <= warningThreshold
-		setTimeRemaining(currentPomo.Remaining.ToString(false))
+		setCurrentState({ ...currentState, timeRemaining: currentPomo.Remaining.ToString(false) })
 	}
 
 	return (
@@ -127,7 +134,7 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 			</div>
 			<PomodoroStatus
 				currentPhase={currentPomo.CurrentState}
-				timeRemaining={timeRemaining}
+				timeRemaining={currentState.timeRemaining}
 				shouldWarn={shouldWarn}
 			/>
 			<PomodoroInput onClick={handleTimer} pomoRunning={pomoActive} />
