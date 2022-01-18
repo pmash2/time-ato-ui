@@ -112,7 +112,7 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 
 	const countDown = () => {
 		shouldWarn = currentPomo.PercentRemaining <= warningThreshold
-		setTimeRemaining(currentPomo.Remaining.ToString())
+		setTimeRemaining(currentPomo.Remaining.ToString(false))
 	}
 
 	return (
