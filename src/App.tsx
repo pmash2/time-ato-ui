@@ -5,14 +5,14 @@ import { About } from "./components/about"
 import { Settings } from "./components/settings"
 import { LoadSettings, SaveSettings, PomoSettings } from "./settings-helpers"
 import { RequestPermission } from "./helpers/windows-notifications"
-import { ToastContainer } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 
 function App() {
 	const [settings, changeSettings] = useState(LoadSettings())
 
 	const updateSettings = (_settings: PomoSettings): PomoSettings => {
 		let newSettings = SaveSettings(_settings)
-		alert("New settings saved!")
+		toast.success("New settings saved!")
 		return newSettings
 	}
 

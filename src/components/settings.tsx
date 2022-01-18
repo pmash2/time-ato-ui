@@ -15,6 +15,10 @@ export const Settings = ({ settings, onSave }: Props) => {
 	const [open, setOpen] = useState(false)
 	const closeModal = (): void => setOpen(false)
 	const openModal = (): void => setOpen(true)
+	const onSaveFunction = () => {
+		onSave()
+		closeModal()
+	}
 
 	return (
 		<div>
@@ -40,7 +44,7 @@ export const Settings = ({ settings, onSave }: Props) => {
 						<SettingsCheckbox {...lbl} key={i} />
 					))}
 
-					<button onClick={onSave}>Save</button>
+					<button onClick={onSaveFunction}>Save</button>
 				</div>
 			</Popup>
 		</div>
