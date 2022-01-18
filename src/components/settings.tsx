@@ -3,7 +3,7 @@ import Popup from "reactjs-popup"
 import "../style/modal.css"
 import { SettingsInput } from "./settings-input"
 import { SettingsCheckbox } from "./settings-checkbox"
-import { PomoSettings } from "../settings-helpers"
+import { PomoSettings } from "../helpers/settings-helpers"
 import "../style/settings.css"
 
 interface Props {

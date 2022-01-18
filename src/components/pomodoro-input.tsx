@@ -1,6 +1,6 @@
 import React from "react"
 import { Timer, getTimer } from "@pmash2/pomo-timer-lib"
-import { LoadSettings } from "../settings-helpers"
+import { LoadSettings } from "../helpers/settings-helpers"
 import "../style/pomodoro-input.css"
 
 type Props = {

@@ -1,4 +1,4 @@
-import { PomoInputSetting } from "../settings-helpers"
+import { PomoInputSetting } from "../helpers/settings-helpers"
 import Popup from "reactjs-popup"
 
 export const SettingsInput = ({ text, id, value, tooltip }: PomoInputSetting) => {

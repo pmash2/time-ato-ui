@@ -1,4 +1,4 @@
-import { PomoCheckboxSetting } from "../settings-helpers"
+import { PomoCheckboxSetting } from "../helpers/settings-helpers"
 
 export const SettingsCheckbox = ({ text, id, checked }: PomoCheckboxSetting) => {
 	return (

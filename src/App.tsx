@@ -3,7 +3,7 @@ import "./style/App.css"
 import { MainLayout } from "./components/main-layout"
 import { About } from "./components/about"
 import { Settings } from "./components/settings"
-import { LoadSettings, SaveSettings, PomoSettings } from "./settings-helpers"
+import { LoadSettings, SaveSettings, PomoSettings } from "./helpers/settings-helpers"
 import { RequestPermission } from "./helpers/windows-notifications"
 import { ToastContainer, toast } from "react-toastify"
 
