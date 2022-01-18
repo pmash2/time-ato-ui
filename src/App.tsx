@@ -5,6 +5,7 @@ import { About } from "./components/about"
 import { Settings } from "./components/settings"
 import { LoadSettings, SaveSettings, PomoSettings } from "./settings-helpers"
 import { RequestPermission } from "./helpers/windows-notifications"
+import { ToastContainer } from "react-toastify"
 
 function App() {
 	const [settings, changeSettings] = useState(LoadSettings())
@@ -31,6 +32,7 @@ function App() {
 				</div>
 				<p>Time-ato</p>
 				<MainLayout settings={settings} />
+				<ToastContainer />
 			</header>
 		</div>
 	)

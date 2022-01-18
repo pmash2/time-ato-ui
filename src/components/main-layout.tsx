@@ -7,7 +7,7 @@ import { CreateNotification } from "../helpers/windows-notifications"
 import { Logo } from "./logo"
 import { sendStateUpdate, sendStatusUpdate } from "../helpers/apiHelpers"
 import { StatusNotification } from "./status-notification"
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css" // Default styling
 import "../style/in-app-toast.css" // Time-ato specific overrides
 
@@ -142,7 +142,6 @@ export const MainLayout = ({ settings }: Props): ReactElement => {
 				shouldWarn={shouldWarn}
 			/>
 			<PomodoroInput onClick={handleTimer} pomoRunning={pomoActive} />
-			<ToastContainer />
 		</div>
 	)
 }
